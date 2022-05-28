@@ -17,6 +17,11 @@ public class ResidentServiceImpl implements ResidentService {
         this.residentRepository = residentRepository;
     }
 
+    @Override
+    public Resident getResi(int sNum) {
+        return residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+    }
+
     @Transactional
     @Override
     public void residentRegister(ResidentRegisterRequest registerRequest) {
@@ -37,5 +42,11 @@ public class ResidentServiceImpl implements ResidentService {
             ResidentNotFoundException::new);
         resident.setName(modifyRequest.getName());
         resident.setGenderCode(modifyRequest.getGenderCode());
+    }
+
+    @Transactional
+    @Override
+    public void residentDelete(int sNum) {
+        residentRepository.deleteBySerialNumber(sNum);
     }
 }

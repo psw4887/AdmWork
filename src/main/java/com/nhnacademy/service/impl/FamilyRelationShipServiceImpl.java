@@ -10,6 +10,7 @@ import com.nhnacademy.repository.FamilyRelationShipRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.FamilyRelationShipService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("familyRelationShipService")
 public class FamilyRelationShipServiceImpl implements FamilyRelationShipService {
@@ -22,6 +23,7 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
         this.residentRepository = residentRepository;
     }
 
+    @Transactional
     @Override
     public void FamilyRelationShipRegister(int sNum, FamilyRelationshipRegisterRequest registerRequest) {
         FamilyRelationShip relationShip = new FamilyRelationShip();
@@ -40,6 +42,7 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
         familyRelationShipRepository.save(relationShip);
     }
 
+    @Transactional
     @Override
     public void FamilyRelationShipModify(int sNum, int fNum, FamilyRelationshipModifyRequest modifyRequest) {
         FamilyRelationShip.FamilyRelationShipPK pk = new FamilyRelationShip.FamilyRelationShipPK();
@@ -53,6 +56,7 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
         relationShip.setFamilyRelationShipCode(modifyRequest.getRelationShip());
     }
 
+    @Transactional
     @Override
     public void FamilyRelationShipDelete(int sNum, int fNum) {
         FamilyRelationShip.FamilyRelationShipPK pk = new FamilyRelationShip.FamilyRelationShipPK();

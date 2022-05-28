@@ -61,7 +61,7 @@ public class BirthDeathReportResident {
         private String birthDeathTypeCode;
 
         @Column(name = "report_resident_serial_number")
-        private String reportResidentSerialNumber;
+        private Integer reportResidentSerialNumber;
 
         @Column(name = "resident_serial_number")
         private Integer residentSerialNumber;
