@@ -19,23 +19,23 @@ public class ResidentServiceImpl implements ResidentService {
 
     @Transactional
     @Override
-    public void residentRegister(ResidentRegisterRequest residentRegisterRequest) {
+    public void residentRegister(ResidentRegisterRequest registerRequest) {
         Resident resident = new Resident();
-        resident.setName(residentRegisterRequest.getName());
-        resident.setRegistrationNumber(residentRegisterRequest.getRegistrationNumber());
-        resident.setGenderCode(residentRegisterRequest.getGenderCode());
-        resident.setBirthDate(residentRegisterRequest.getBirth());
-        resident.setBirthPlaceCode(residentRegisterRequest.getBirthPlace());
-        resident.setRegistrationBaseAddress(residentRegisterRequest.getBaseAddress());
+        resident.setName(registerRequest.getName());
+        resident.setRegistrationNumber(registerRequest.getRegistrationNumber());
+        resident.setGenderCode(registerRequest.getGenderCode());
+        resident.setBirthDate(registerRequest.getBirth());
+        resident.setBirthPlaceCode(registerRequest.getBirthPlace());
+        resident.setRegistrationBaseAddress(registerRequest.getBaseAddress());
         residentRepository.save(resident);
     }
 
     @Transactional
     @Override
-    public void residentModify(int sNum, ResidentModifyRequest residentModifyRequest) {
+    public void residentModify(int sNum, ResidentModifyRequest modifyRequest) {
         Resident resident = residentRepository.findById(sNum).orElseThrow(
             ResidentNotFoundException::new);
-        resident.setName(residentModifyRequest.getName());
-        resident.setGenderCode(residentModifyRequest.getGenderCode());
+        resident.setName(modifyRequest.getName());
+        resident.setGenderCode(modifyRequest.getGenderCode());
     }
 }

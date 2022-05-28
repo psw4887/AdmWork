@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/residents")
 public class ResidentController {
 
-    private final ResidentService residentService;
+    private final ResidentService service;
 
     public ResidentController(ResidentService residentService) {
-        this.residentService = residentService;
+        this.service = residentService;
     }
 
 
@@ -33,13 +33,13 @@ public class ResidentController {
         if(bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
-        residentService.residentRegister(residentRegisterRequest);
+        service.residentRegister(residentRegisterRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{serialNumber}")
     public void residentModify(@PathVariable("serialNumber") int sNum,
                                @RequestBody ResidentModifyRequest residentModifyRequest) {
-        residentService.residentModify(sNum, residentModifyRequest);
+        service.residentModify(sNum, residentModifyRequest);
     }
 }
