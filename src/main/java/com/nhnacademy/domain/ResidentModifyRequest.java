@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class ResidentModifyRequest {
+
     @NotBlank
     private String name;
 
