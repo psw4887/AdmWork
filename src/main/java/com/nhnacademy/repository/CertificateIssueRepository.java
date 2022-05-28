@@ -1,4 +1,8 @@
 package com.nhnacademy.repository;
 
-public interface CertificateIssueRepository {
+import com.nhnacademy.entity.CertificateIssue;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CertificateIssueRepository extends JpaRepository<CertificateIssue, Long> {
+
 }

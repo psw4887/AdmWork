@@ -1,4 +1,8 @@
 package com.nhnacademy.repository;
 
-public interface HouseholdCompositionResidentRepository {
+import com.nhnacademy.entity.HouseholdCompositionResident;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HouseholdCompositionResidentRepository extends
+        JpaRepository<HouseholdCompositionResident, HouseholdCompositionResident.HouseholdCompositionResidentPK> {
 }
