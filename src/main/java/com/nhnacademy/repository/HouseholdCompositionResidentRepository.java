@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HouseholdCompositionResidentRepository extends
         JpaRepository<HouseholdCompositionResident, HouseholdCompositionResident.HouseholdCompositionResidentPK> {
+
+    void deleteByHouseholdCompositionResidentPK(HouseholdCompositionResident.HouseholdCompositionResidentPK householdCompositionResidentPK);
 }
