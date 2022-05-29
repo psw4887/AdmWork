@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FamilyRelationShipRepository extends
         JpaRepository<FamilyRelationShip, FamilyRelationShip.FamilyRelationShipPK> {
-
-    void deleteByFamilyRelationShipPK(FamilyRelationShip.FamilyRelationShipPK familyRelationShipPK);
 }

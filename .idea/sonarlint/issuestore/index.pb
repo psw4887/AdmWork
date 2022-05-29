@@ -3,10 +3,6 @@ V
 &src/main/java/com/nhnacademy/Base.java,8\0\80df718b9f8afa568983a160d8e79f7007c4c246
 o
 ?src/main/java/com/nhnacademy/repository/FamilyRelationShip.java,8\4\847c282259a814c5d92cae84c6bc575524ff58b2
-p
-@src/main/java/com/nhnacademy/repository/HouseholdRepository.java,9\3\9338f4ea911f559f9535cc12d17d9439493e4e43
-
-Osrc/main/java/com/nhnacademy/repository/HouseholdMovementAddressRepository.java,9\4\94b6e67d3dfa0e66c42204ae395ba3e7ffadd01f
 u
 Esrc/main/java/com/nhnacademy/exception/ResidentNotFoundException.java,7\c\7c2057dca1f7e573a574efdb9f12541fffabfe72
 v
@@ -29,5 +25,3 @@ k
 ;src/main/java/com/nhnacademy/entity/FamilyRelationShip.java,f\7\f72c9e7b65083ec296b150235fe8f6338c0ff3af
 k
 ;src/main/java/com/nhnacademy/controller/ControllerBase.java,d\0\d072bb79a2ba0a12e547c95efe7e7fec88c3a3e0
-k
-;src/main/java/com/nhnacademy/repository/RepositoryBase.java,1\f\1fbb935378a6e067a4508c93dc737f8d8a88c839

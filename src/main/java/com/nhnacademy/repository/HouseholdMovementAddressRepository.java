@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HouseholdMovementAddressRepository extends
         JpaRepository<HouseholdMovementAddress, HouseholdMovementAddress.HouseholdMovementAddressPK> {
-
-    void deleteByHouseholdMovementAddressPK(HouseholdMovementAddress.HouseholdMovementAddressPK householdMovementAddressPK);
 }

@@ -61,7 +61,7 @@ public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAdd
         pk.setHouseholdSerialNumber(hNum);
         pk.setMovementReportDate(date);
 
-        addressRepository.deleteByHouseholdMovementAddressPK(pk);
+        addressRepository.deleteById(pk);
     }
 
     private Timestamp getTime() {

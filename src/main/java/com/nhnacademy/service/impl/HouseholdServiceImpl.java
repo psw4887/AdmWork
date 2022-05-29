@@ -43,7 +43,7 @@ public class HouseholdServiceImpl implements HouseholdService {
     @Transactional
     @Override
     public void householdDelete(int hNum) {
-        householdRepository.deleteBySerialNumber(hNum);
+        householdRepository.deleteById(hNum);
     }
 
     private Timestamp getTime() {

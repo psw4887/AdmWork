@@ -65,7 +65,7 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
         pk.setFamilyResidentSerialNumber(fNum);
         pk.setBaseResidentSerialNumber(sNum);
 
-        familyRelationShipRepository.deleteByFamilyRelationShipPK(pk);
+        familyRelationShipRepository.deleteById(pk);
     }
 
     @Override

@@ -55,7 +55,7 @@ public class HouseholdCompositionServiceImpl implements HouseholdCompositionServ
         pk.setHouseholdSerialNumber(hNum);
         pk.setResidentSerialNumber(sNum);
 
-        householdCompositionResidentRepository.deleteByHouseholdCompositionResidentPK(pk);
+        householdCompositionResidentRepository.deleteById(pk);
     }
 
     private Timestamp getTime() {

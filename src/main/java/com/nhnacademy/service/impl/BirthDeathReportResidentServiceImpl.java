@@ -82,7 +82,7 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         BirthDeathReportResident.BirthDeathReportResidentPK pk = getPK(tNum, sNum);
         pk.setBirthDeathTypeCode("출생");
 
-        birthDeathReportResidentRepository.deleteByBirthDeathReportResidentPK(pk);
+        birthDeathReportResidentRepository.deleteById(pk);
     }
 
     @Transactional
@@ -124,7 +124,7 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         BirthDeathReportResident.BirthDeathReportResidentPK pk = getPK(tNum, sNum);
         pk.setBirthDeathTypeCode("사망");
 
-        birthDeathReportResidentRepository.deleteByBirthDeathReportResidentPK(pk);
+        birthDeathReportResidentRepository.deleteById(pk);
     }
 
     private Timestamp getTime() {

@@ -63,6 +63,6 @@ public class ResidentServiceImpl implements ResidentService {
     @Transactional
     @Override
     public void residentDelete(int sNum) {
-        residentRepository.deleteBySerialNumber(sNum);
+        residentRepository.deleteById(sNum);
     }
 }

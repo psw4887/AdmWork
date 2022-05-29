@@ -17,6 +17,4 @@ public interface BirthDeathReportResidentRepository extends
 
     @Query("select b.birthDeathReportResidentPK as deathCode, b.birthDeathReportDate as deathDate from BirthDeathReportResident as b where b.resident = ?1")
     List<DeathDTO> findDeathReportByResident(Resident resident);
-
-    void deleteByBirthDeathReportResidentPK(BirthDeathReportResident.BirthDeathReportResidentPK birthDeathReportResidentPK);
 }
