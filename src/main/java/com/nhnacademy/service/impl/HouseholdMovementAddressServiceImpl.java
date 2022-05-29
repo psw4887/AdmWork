@@ -52,6 +52,8 @@ public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAdd
 
         address.setHouseMovementAddress(movementRequest.getAddress());
         address.setLastAddressYN(movementRequest.getIsFinal());
+
+        addressRepository.save(address);
     }
 
     @Override

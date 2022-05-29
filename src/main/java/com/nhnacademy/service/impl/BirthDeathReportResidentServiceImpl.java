@@ -74,6 +74,8 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         report.setBirthReportQualificationsCode(request.getRelationship());
         report.setEmail(request.getEmail());
         report.setPhoneNumber(request.getPhoneNumber());
+
+        birthDeathReportResidentRepository.save(report);
     }
 
     @Transactional
@@ -116,6 +118,8 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         report.setBirthReportQualificationsCode(request.getRelationship());
         report.setEmail(request.getEmail());
         report.setPhoneNumber(request.getPhoneNumber());
+
+        birthDeathReportResidentRepository.save(report);
     }
 
     @Transactional

@@ -58,6 +58,8 @@ public class ResidentServiceImpl implements ResidentService {
 
         resident.setName(modifyRequest.getName());
         resident.setGenderCode(modifyRequest.getGenderCode());
+
+        residentRepository.save(resident);
     }
 
     @Transactional

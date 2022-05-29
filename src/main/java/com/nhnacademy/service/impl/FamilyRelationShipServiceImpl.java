@@ -55,6 +55,8 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
                 FamilyNotFoundException::new);
         String relation = relationNameConverter(modifyRequest.getRelationShip());
         relationShip.setFamilyRelationShipCode(relation);
+
+        familyRelationShipRepository.save(relationShip);
     }
 
     @Transactional

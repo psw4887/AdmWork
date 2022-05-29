@@ -9,3 +9,13 @@ Content-Type: application/json
   "birthPlace" : "한강",
   "baseAddress" : "경상남도 김해시 김해대로 2326"
 }
+
+#####
+
+PUT http://localhost:8090/residents/8 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "유호철",
+  "genderCode": "여"
+}
