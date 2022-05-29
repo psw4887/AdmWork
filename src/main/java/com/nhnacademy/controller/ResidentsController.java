@@ -1,7 +1,7 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.ResidentModifyRequest;
-import com.nhnacademy.domain.ResidentRegisterRequest;
+import com.nhnacademy.domain.vo.ResidentModifyRequest;
+import com.nhnacademy.domain.vo.ResidentRegisterRequest;
 import com.nhnacademy.exception.ValidationFailedException;
 import com.nhnacademy.service.ResidentService;
 import javax.validation.Valid;

@@ -1,6 +1,6 @@
 package com.nhnacademy.service;
 
-import com.nhnacademy.domain.HouseholdRegisterRequest;
+import com.nhnacademy.domain.vo.HouseholdRegisterRequest;
 
 public interface HouseholdService {
 

@@ -1,6 +1,6 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.DeathRequest;
+import com.nhnacademy.domain.vo.DeathRequest;
 import com.nhnacademy.service.BirthDeathReportResidentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

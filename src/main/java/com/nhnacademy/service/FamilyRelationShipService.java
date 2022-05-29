@@ -1,7 +1,7 @@
 package com.nhnacademy.service;
 
-import com.nhnacademy.domain.FamilyRelationshipModifyRequest;
-import com.nhnacademy.domain.FamilyRelationshipRegisterRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipModifyRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipRegisterRequest;
 
 public interface FamilyRelationShipService {
 

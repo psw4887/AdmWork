@@ -12,7 +12,7 @@
         <th>Gender</th>
         <th>Delete</th>
     </tr>
-    <tr th:each="resident : ${lists}">
+    <tr th:each="resident : ${lists}" align="center">
         <td th:text="${resident.sNum}"></td>
         <td th:text="${resident.name}"></td>
         <td th:text="${resident.gender}"></td>
@@ -23,5 +23,10 @@
         </form>
     </tr>
 </table>
+<div align="center">
+<a th:href="'/resident/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
+    <span th:text="'('+ ${page} + 'page)'"></span>
+<a th:href="'/resident/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+</div>
 </body>
 </html>

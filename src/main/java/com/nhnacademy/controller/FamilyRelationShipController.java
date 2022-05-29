@@ -1,7 +1,7 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.FamilyRelationshipModifyRequest;
-import com.nhnacademy.domain.FamilyRelationshipRegisterRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipModifyRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipRegisterRequest;
 import com.nhnacademy.service.FamilyRelationShipService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

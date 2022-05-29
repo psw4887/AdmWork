@@ -1,7 +1,7 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.FamilyRelationshipModifyRequest;
-import com.nhnacademy.domain.FamilyRelationshipRegisterRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipModifyRequest;
+import com.nhnacademy.domain.vo.FamilyRelationshipRegisterRequest;
 import com.nhnacademy.entity.FamilyRelationShip;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.FamilyNotFoundException;

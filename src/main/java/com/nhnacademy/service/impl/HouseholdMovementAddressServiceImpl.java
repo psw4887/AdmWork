@@ -1,6 +1,6 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.MovementRequest;
+import com.nhnacademy.domain.vo.MovementRequest;
 import com.nhnacademy.entity.Household;
 import com.nhnacademy.entity.HouseholdMovementAddress;
 import com.nhnacademy.exception.HouseHoldNotFoundException;

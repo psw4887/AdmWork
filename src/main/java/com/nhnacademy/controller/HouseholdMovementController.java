@@ -1,6 +1,6 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.MovementRequest;
+import com.nhnacademy.domain.vo.MovementRequest;
 import com.nhnacademy.service.HouseholdMovementAddressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

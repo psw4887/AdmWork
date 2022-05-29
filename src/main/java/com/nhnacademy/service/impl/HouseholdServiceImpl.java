@@ -1,6 +1,6 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.HouseholdRegisterRequest;
+import com.nhnacademy.domain.vo.HouseholdRegisterRequest;
 import com.nhnacademy.entity.Household;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;

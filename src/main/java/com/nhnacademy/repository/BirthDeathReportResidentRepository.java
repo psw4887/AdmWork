@@ -1,7 +1,7 @@
 package com.nhnacademy.repository;
 
-import com.nhnacademy.domain.BirthDTO;
-import com.nhnacademy.domain.DeathDTO;
+import com.nhnacademy.domain.dto.BirthDTO;
+import com.nhnacademy.domain.dto.DeathDTO;
 import com.nhnacademy.entity.BirthDeathReportResident;
 import com.nhnacademy.entity.Resident;
 import org.springframework.data.jpa.repository.JpaRepository;

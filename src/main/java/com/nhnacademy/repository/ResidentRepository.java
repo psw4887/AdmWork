@@ -1,6 +1,6 @@
 package com.nhnacademy.repository;
 
-import com.nhnacademy.domain.ResidentDTO;
+import com.nhnacademy.domain.dto.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

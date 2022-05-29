@@ -1,6 +1,6 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.HouseholdCompositionRegisterRequest;
+import com.nhnacademy.domain.vo.HouseholdCompositionRegisterRequest;
 import com.nhnacademy.entity.Household;
 import com.nhnacademy.entity.HouseholdCompositionResident;
 import com.nhnacademy.entity.Resident;

@@ -1,10 +1,9 @@
 package com.nhnacademy.service;
 
-import com.nhnacademy.domain.BirthDTO;
-import com.nhnacademy.domain.BirthRequest;
-import com.nhnacademy.domain.DeathDTO;
-import com.nhnacademy.domain.DeathRequest;
-import com.nhnacademy.entity.BirthDeathReportResident;
+import com.nhnacademy.domain.dto.BirthDTO;
+import com.nhnacademy.domain.vo.BirthRequest;
+import com.nhnacademy.domain.dto.DeathDTO;
+import com.nhnacademy.domain.vo.DeathRequest;
 
 import java.util.List;
 

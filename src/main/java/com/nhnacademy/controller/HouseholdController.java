@@ -1,7 +1,7 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.HouseholdCompositionRegisterRequest;
-import com.nhnacademy.domain.HouseholdRegisterRequest;
+import com.nhnacademy.domain.vo.HouseholdCompositionRegisterRequest;
+import com.nhnacademy.domain.vo.HouseholdRegisterRequest;
 import com.nhnacademy.service.HouseholdCompositionService;
 import com.nhnacademy.service.HouseholdService;
 import org.springframework.http.HttpStatus;

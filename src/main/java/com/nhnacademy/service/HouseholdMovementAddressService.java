@@ -1,6 +1,6 @@
 package com.nhnacademy.service;
 
-import com.nhnacademy.domain.MovementRequest;
+import com.nhnacademy.domain.vo.MovementRequest;
 
 import java.util.Date;
 

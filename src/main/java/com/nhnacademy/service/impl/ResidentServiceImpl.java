@@ -1,9 +1,9 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.ResidentModifyRequest;
-import com.nhnacademy.domain.ResidentRegisterRequest;
+import com.nhnacademy.domain.vo.ResidentModifyRequest;
+import com.nhnacademy.domain.vo.ResidentRegisterRequest;
 import com.nhnacademy.domain.ResidentView;
-import com.nhnacademy.domain.ResidentDTO;
+import com.nhnacademy.domain.dto.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.ResidentRepository;
