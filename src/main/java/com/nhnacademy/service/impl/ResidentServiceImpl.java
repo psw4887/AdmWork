@@ -6,20 +6,28 @@ import com.nhnacademy.domain.ResidentView;
 import com.nhnacademy.domain.dto.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
+import com.nhnacademy.repository.HouseholdCompositionResidentRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service("residentService")
 public class ResidentServiceImpl implements ResidentService {
     private final ResidentRepository residentRepository;
+    private final HouseholdCompositionResidentRepository compositionResidentRepository;
 
-    public ResidentServiceImpl(ResidentRepository residentRepository) {
+    public ResidentServiceImpl(ResidentRepository residentRepository,
+                               HouseholdCompositionResidentRepository compositionResidentRepository) {
         this.residentRepository = residentRepository;
+        this.compositionResidentRepository = compositionResidentRepository;
     }
 
     @Override
@@ -65,6 +73,11 @@ public class ResidentServiceImpl implements ResidentService {
     @Transactional
     @Override
     public void residentDelete(int sNum) {
-        residentRepository.deleteById(sNum);
+        Integer hNum = compositionResidentRepository.getHouseSerialNumberByResidentNumber(sNum, "본인");
+        if (Objects.isNull(hNum) || Objects.isNull(compositionResidentRepository.checkHouseholderMember(hNum))) {
+            residentRepository.deleteById(sNum);
+        } else {
+            log.error("남은가족이 있어 삭제가 불가능합니다.");
+        }
     }
 }
