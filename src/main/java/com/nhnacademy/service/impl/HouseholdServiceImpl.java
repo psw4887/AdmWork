@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Service("householdService")
@@ -33,7 +34,7 @@ public class HouseholdServiceImpl implements HouseholdService {
 
         household.setResident(resident);
         household.setSerialNumber(request.getHouseHolder());
-        household.setCompositionDate(getTime());
+        household.setCompositionDate(LocalDate.now());
         household.setCompositionReasonCode(request.getReason());
         household.setCurrentHouseMovementAddress(request.getNowAddress());
 

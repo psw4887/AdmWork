@@ -13,8 +13,7 @@ import com.nhnacademy.service.HouseholdCompositionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Service("householdCompositionService")
 public class HouseholdCompositionServiceImpl implements HouseholdCompositionService {
@@ -41,7 +40,7 @@ public class HouseholdCompositionServiceImpl implements HouseholdCompositionServ
 
         householdCompositionResident.setHousehold(household);
         householdCompositionResident.setResident(resident);
-        householdCompositionResident.setReportDate(getTime());
+        householdCompositionResident.setReportDate(LocalDate.now());
         householdCompositionResident.setRelationshipCode(request.getRelationShip());
         householdCompositionResident.setCompositionChangeReasonCode(request.getReason());
 
@@ -56,9 +55,5 @@ public class HouseholdCompositionServiceImpl implements HouseholdCompositionServ
         pk.setResidentSerialNumber(sNum);
 
         householdCompositionResidentRepository.deleteById(pk);
-    }
-
-    private Timestamp getTime() {
-        return new Timestamp(new Date().getTime());
     }
 }

@@ -1,7 +1,7 @@
 package com.nhnacademy.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -47,9 +47,8 @@ public class HouseholdMovementAddress {
     @Embeddable
     public static class HouseholdMovementAddressPK implements Serializable {
 
-        @Temporal(TemporalType.TIMESTAMP)
         @Column(name = "house_movement_report_date")
-        private Date movementReportDate;
+        private LocalDate movementReportDate;
 
         @Column(name = "household_serial_number")
         private Integer householdSerialNumber;

@@ -1,7 +1,7 @@
 package com.nhnacademy.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -38,9 +36,8 @@ public class HouseholdCompositionResident {
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "report_date")
-    private Date reportDate;
+    private LocalDate reportDate;
 
     @Column(name = "household_relationship_code")
     private String relationshipCode;

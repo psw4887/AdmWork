@@ -1,6 +1,6 @@
 package com.nhnacademy.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,9 +31,8 @@ public class Household {
     @JoinColumn(name = "household_resident_serial_number")
     private Resident resident;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "household_composition_date")
-    private Date compositionDate;
+    private LocalDate compositionDate;
 
     @Column(name = "household_composition_reason_code")
     private String compositionReasonCode;

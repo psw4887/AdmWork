@@ -15,8 +15,7 @@ import com.nhnacademy.service.BirthDeathReportResidentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,10 +53,9 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         pk.setBirthDeathTypeCode("출생");
         pk.setReportResidentSerialNumber(request.getReportResident());
 
-
         report.setBirthDeathReportResidentPK(pk);
         report.setResident(resident);
-        report.setBirthDeathReportDate(getTime());
+        report.setBirthDeathReportDate(LocalDate.now());
         report.setBirthReportQualificationsCode(request.getRelationship());
         if(Objects.nonNull(request.getEmail())) {
             report.setEmail(request.getEmail());
@@ -77,7 +75,7 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
 
         BirthDeathReportResident report = getReport(pk);
 
-        report.setBirthDeathReportDate(getTime());
+        report.setBirthDeathReportDate(LocalDate.now());
         report.setBirthReportQualificationsCode(request.getRelationship());
 
         birthDeathReportResidentRepository.save(report);
@@ -99,13 +97,13 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         Resident resident = residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
 
         BirthDeathReportResident.BirthDeathReportResidentPK pk = new BirthDeathReportResident.BirthDeathReportResidentPK();
+        pk.setResidentSerialNumber(sNum);
         pk.setBirthDeathTypeCode("사망");
         pk.setReportResidentSerialNumber(request.getReportResident());
-        pk.setResidentSerialNumber(sNum);
 
         report.setBirthDeathReportResidentPK(pk);
         report.setResident(resident);
-        report.setBirthDeathReportDate(getTime());
+        report.setBirthDeathReportDate(LocalDate.now());
         report.setBirthReportQualificationsCode(request.getRelationship());
         if(Objects.nonNull(request.getEmail())) {
             report.setEmail(request.getEmail());
@@ -114,6 +112,7 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
             report.setPhoneNumber(request.getPhoneNumber());
         }
 
+        birthDeathReportResidentRepository.save(report);
     }
 
     @Transactional
@@ -124,7 +123,7 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
 
         BirthDeathReportResident report = getReport(pk);
 
-        report.setBirthDeathReportDate(getTime());
+        report.setBirthDeathReportDate(LocalDate.now());
         report.setBirthReportQualificationsCode(request.getRelationship());
 
         birthDeathReportResidentRepository.save(report);
@@ -137,10 +136,6 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         pk.setBirthDeathTypeCode("사망");
 
         birthDeathReportResidentRepository.deleteById(pk);
-    }
-
-    private Timestamp getTime() {
-        return new Timestamp(new Date().getTime());
     }
 
     private BirthDeathReportResident.BirthDeathReportResidentPK getPK(int tNum, int sNum) {

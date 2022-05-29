@@ -2,10 +2,12 @@ package com.nhnacademy.controller;
 
 import com.nhnacademy.domain.vo.MovementRequest;
 import com.nhnacademy.service.HouseholdMovementAddressService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/household/{householdSerialNumber}/movement")
@@ -26,7 +28,7 @@ public class HouseholdMovementController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{reportDate}")
     public void movementModify(@PathVariable("householdSerialNumber") int hNum,
-                               @PathVariable("reportDate") Date date,
+                               @PathVariable("reportDate") @DateTimeFormat(pattern = "yyyyMMdd") LocalDate date,
                                @RequestBody MovementRequest movementRequest) {
         service.movementModify(hNum, date, movementRequest);
     }
@@ -34,7 +36,7 @@ public class HouseholdMovementController {
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{reportDate}")
     public void movementDelete(@PathVariable("householdSerialNumber") int hNum,
-                               @PathVariable("reportDate") Date date) {
+                               @PathVariable("reportDate") @DateTimeFormat(pattern = "yyyyMMdd") LocalDate date) throws ParseException {
         service.movementDelete(hNum, date);
     }
 }

@@ -11,8 +11,7 @@ import com.nhnacademy.service.HouseholdMovementAddressService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Service("householdMovementAddressService")
 public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAddressService {
@@ -31,7 +30,7 @@ public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAdd
         HouseholdMovementAddress.HouseholdMovementAddressPK pk = new HouseholdMovementAddress.HouseholdMovementAddressPK();
         Household hold = householdRepository.findById(hNum).orElseThrow(HouseHoldNotFoundException::new);
 
-        pk.setMovementReportDate(getTime());
+        pk.setMovementReportDate(LocalDate.now());
         pk.setHouseholdSerialNumber(hNum);
 
         address.setHouseholdMovementAddressPK(pk);
@@ -44,10 +43,12 @@ public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAdd
 
     @Override
     @Transactional
-    public void movementModify(int hNum, Date date, MovementRequest movementRequest) {
+    public void movementModify(int hNum, LocalDate date, MovementRequest movementRequest) {
         HouseholdMovementAddress.HouseholdMovementAddressPK pk = new HouseholdMovementAddress.HouseholdMovementAddressPK();
         pk.setHouseholdSerialNumber(hNum);
         pk.setMovementReportDate(date);
+
+
         HouseholdMovementAddress address = addressRepository.findById(pk).orElseThrow(HouseholdMovementNotFoundException::new);
 
         address.setHouseMovementAddress(movementRequest.getAddress());
@@ -58,15 +59,11 @@ public class HouseholdMovementAddressServiceImpl implements HouseholdMovementAdd
 
     @Override
     @Transactional
-    public void movementDelete(int hNum, Date date) {
+    public void movementDelete(int hNum, LocalDate date) {
         HouseholdMovementAddress.HouseholdMovementAddressPK pk = new HouseholdMovementAddress.HouseholdMovementAddressPK();
         pk.setHouseholdSerialNumber(hNum);
         pk.setMovementReportDate(date);
 
         addressRepository.deleteById(pk);
-    }
-
-    private Timestamp getTime() {
-        return new Timestamp(new Date().getTime());
     }
 }
