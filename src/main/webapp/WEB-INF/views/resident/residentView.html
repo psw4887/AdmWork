@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" text-align="center">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="resident : ${lists}">
+        <td th:text="${resident.sNum}"></td>
+        <td th:text="${resident.name}"></td>
+        <td th:text="${resident.gender}"></td>
+        <form th:action="'/resident/delete?sNum=' + ${resident.sNum}" method="post">
+            <td>
+                <input type="submit" value="delete"></span>
+            </td>
+        </form>
+    </tr>
+</table>
+</body>
+</html>

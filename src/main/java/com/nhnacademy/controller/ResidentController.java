@@ -1,45 +1,39 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.ResidentModifyRequest;
-import com.nhnacademy.domain.ResidentRegisterRequest;
-import com.nhnacademy.exception.ValidationFailedException;
+import com.nhnacademy.domain.ResidentView;
 import com.nhnacademy.service.ResidentService;
-import javax.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RestController
-@RequestMapping("/residents")
+@Controller
+@RequestMapping("/resident")
 public class ResidentController {
 
-    private final ResidentService service;
+    private final ResidentService residentService;
 
     public ResidentController(ResidentService residentService) {
-        this.service = residentService;
+        this.residentService = residentService;
     }
 
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public void residentRegister(@Valid @RequestBody ResidentRegisterRequest residentRegisterRequest,
-                                 BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            throw new ValidationFailedException(bindingResult);
-        }
-        service.residentRegister(residentRegisterRequest);
+    @GetMapping ("/view")
+    public String viewResidentList(@RequestParam("page") Integer page,
+                                   Model model) {
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        List<ResidentView> list = residentService.allResidents(pageRequest);
+        model.addAttribute("lists", list);
+        return "resident/residentView";
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{serialNumber}")
-    public void residentModify(@PathVariable("serialNumber") int sNum,
-                               @RequestBody ResidentModifyRequest residentModifyRequest) {
-        service.residentModify(sNum, residentModifyRequest);
+    @PostMapping("/delete")
+    public String deleteResident(@Param("sNum")int sNum) {
+        residentService.residentDelete(sNum);
+        return "redirect:/resident/view?page=0&size=5";
     }
 }

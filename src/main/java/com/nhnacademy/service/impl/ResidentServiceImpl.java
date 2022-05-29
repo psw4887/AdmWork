@@ -2,14 +2,15 @@ package com.nhnacademy.service.impl;
 
 import com.nhnacademy.domain.ResidentModifyRequest;
 import com.nhnacademy.domain.ResidentRegisterRequest;
+import com.nhnacademy.domain.ResidentView;
+import com.nhnacademy.domain.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,20 @@ public class ResidentServiceImpl implements ResidentService {
 
     public ResidentServiceImpl(ResidentRepository residentRepository) {
         this.residentRepository = residentRepository;
+    }
+
+    @Override
+    public List<ResidentView> allResidents(Pageable pageable) {
+        List<ResidentView> views = new ArrayList<>();
+        List<ResidentDTO> list = residentRepository.getAllBy(pageable).getContent();
+        for (ResidentDTO dto:list) {
+            ResidentView view = new ResidentView();
+            view.setSNum(dto.getSerialNumber());
+            view.setName(dto.getName());
+            view.setGender(dto.getGenderCode());
+            views.add(view);
+        }
+        return views;
     }
 
     @Transactional
@@ -31,6 +46,7 @@ public class ResidentServiceImpl implements ResidentService {
         resident.setBirthDate(registerRequest.getBirth());
         resident.setBirthPlaceCode(registerRequest.getBirthPlace());
         resident.setRegistrationBaseAddress(registerRequest.getBaseAddress());
+
         residentRepository.save(resident);
     }
 
@@ -39,6 +55,7 @@ public class ResidentServiceImpl implements ResidentService {
     public void residentModify(int sNum, ResidentModifyRequest modifyRequest) {
         Resident resident = residentRepository.findById(sNum).orElseThrow(
             ResidentNotFoundException::new);
+
         resident.setName(modifyRequest.getName());
         resident.setGenderCode(modifyRequest.getGenderCode());
     }
