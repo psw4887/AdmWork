@@ -1,8 +1,6 @@
 
 V
 &src/main/java/com/nhnacademy/Base.java,8\0\80df718b9f8afa568983a160d8e79f7007c4c246
-b
-2src/main/java/com/nhnacademy/entity/Household.java,4\a\4ae5f1eeec6fd9c766b346b267e8c3bc52114247
 o
 ?src/main/java/com/nhnacademy/repository/FamilyRelationShip.java,8\4\847c282259a814c5d92cae84c6bc575524ff58b2
 w
@@ -23,8 +21,6 @@ s
 Csrc/main/java/com/nhnacademy/exception/FamilyNotFoundException.java,6\3\63bad87591dfb64fc65ba09544217e54aa5bb3a7
 x
 Hsrc/main/java/com/nhnacademy/exception/CertificateNotFoundException.java,4\8\48ed446f3b696708b9ffb1c207f16f3bc9f443ed
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 u
 Esrc/main/java/com/nhnacademy/entity/HouseholdCompositionResident.java,3\5\35d35cdeb7feefa23e5d3fb7f84b02621c03baec
 q
@@ -33,10 +29,6 @@ u
 Esrc/main/java/com/nhnacademy/exception/ValidationFailedException.java,a\2\a2f40d1db42fd3e44eb380acff2a0b153646d7e9
 n
 >src/main/java/com/nhnacademy/domain/ResidentModifyRequest.java,6\c\6cd8a77b9af74bae8e95e3002e372956195ce51b
-p
-@src/main/java/com/nhnacademy/domain/ResidentRegisterRequest.java,9\0\900782ca897365bab1c6cf91d26009b558c56723
-a
-1src/main/java/com/nhnacademy/entity/Resident.java,a\a\aaaeecd77ba7659ce45949a16dafebe2bb208369
 q
 Asrc/main/java/com/nhnacademy/entity/BirthDeathReportResident.java,5\1\5160c86cb72f764a0608ed4795f15d2e379a09ac
 i

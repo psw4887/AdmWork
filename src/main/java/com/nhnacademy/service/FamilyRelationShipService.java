@@ -10,4 +10,6 @@ public interface FamilyRelationShipService {
     void FamilyRelationShipModify(int sNum, int fNum, FamilyRelationshipModifyRequest ModifyRequest);
 
     void FamilyRelationShipDelete(int sNum, int fNum);
+
+    String relationNameConverter(String relation);
 }

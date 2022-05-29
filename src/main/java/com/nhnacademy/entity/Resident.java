@@ -1,5 +1,6 @@
 package com.nhnacademy.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,9 +35,8 @@ public class Resident {
     @Column(name = "gender_code")
     private String genderCode;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDateTime birthDate;
 
     @Column(name = "birth_place_code")
     private String birthPlaceCode;
@@ -44,9 +44,8 @@ public class Resident {
     @Column(name = "registration_base_address")
     private String registrationBaseAddress;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "death_date")
-    private Date deathDate;
+    private LocalDateTime deathDate;
 
     @Column(name = "death_place_code")
     private String deathPlaceCode;

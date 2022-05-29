@@ -37,7 +37,8 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
 
         relationShip.setFamilyRelationShipPK(pk);
         relationShip.setResident(resident);
-        relationShip.setFamilyRelationShipCode(registerRequest.getRelationShip());
+        String relation = relationNameConverter(registerRequest.getRelationShip());
+        relationShip.setFamilyRelationShipCode(relation);
 
         familyRelationShipRepository.save(relationShip);
     }
@@ -52,8 +53,8 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
 
         FamilyRelationShip relationShip = familyRelationShipRepository.findById(pk).orElseThrow(
                 FamilyNotFoundException::new);
-
-        relationShip.setFamilyRelationShipCode(modifyRequest.getRelationShip());
+        String relation = relationNameConverter(modifyRequest.getRelationShip());
+        relationShip.setFamilyRelationShipCode(relation);
     }
 
     @Transactional
@@ -65,5 +66,27 @@ public class FamilyRelationShipServiceImpl implements FamilyRelationShipService 
         pk.setBaseResidentSerialNumber(sNum);
 
         familyRelationShipRepository.deleteByFamilyRelationShipPK(pk);
+    }
+
+    @Override
+    public String relationNameConverter(String relation) {
+        switch(relation) {
+            case "father" :
+                relation = "부";
+                break;
+            case "mother" :
+                relation = "모";
+                break;
+            case "spouse" :
+                relation = "배우자";
+                break;
+            case "child" :
+                relation = "자녀";
+                break;
+            default:
+                relation = "타인";
+                break;
+        }
+        return relation;
     }
 }

@@ -1,0 +1,11 @@
+POST http://localhost:8090/residents HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "박세완",
+  "registrationNumber": "911355-1706311",
+  "genderCode": "남",
+  "birth": "1997-04-21 00:00:00",
+  "birthPlace" : "한강",
+  "baseAddress" : "경상남도 김해시 김해대로 2326"
+}

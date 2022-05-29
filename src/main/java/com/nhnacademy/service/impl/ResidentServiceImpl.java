@@ -6,6 +6,10 @@ import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +19,6 @@ public class ResidentServiceImpl implements ResidentService {
 
     public ResidentServiceImpl(ResidentRepository residentRepository) {
         this.residentRepository = residentRepository;
-    }
-
-    @Override
-    public Resident getResi(int sNum) {
-        return residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
     }
 
     @Transactional

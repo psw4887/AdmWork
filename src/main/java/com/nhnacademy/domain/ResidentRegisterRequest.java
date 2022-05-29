@@ -1,9 +1,11 @@
 package com.nhnacademy.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class ResidentRegisterRequest {
 
@@ -17,7 +19,7 @@ public class ResidentRegisterRequest {
     private String genderCode;
 
     @NotBlank
-    private Date birth;
+    private LocalDateTime birth;
 
     @NotBlank
     private String birthPlace;
