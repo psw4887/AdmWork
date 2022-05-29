@@ -1,6 +1,7 @@
 package com.nhnacademy.service.impl;
 
 import com.nhnacademy.domain.dto.BirthDTO;
+import com.nhnacademy.domain.vo.BdRequest;
 import com.nhnacademy.domain.vo.BirthRequest;
 import com.nhnacademy.domain.dto.DeathDTO;
 import com.nhnacademy.domain.vo.DeathRequest;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service("birthDeathReportResidentService")
 public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResidentService {
@@ -48,23 +50,28 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         Resident resident = residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
 
         BirthDeathReportResident.BirthDeathReportResidentPK pk = new BirthDeathReportResident.BirthDeathReportResidentPK();
+        pk.setResidentSerialNumber(sNum);
         pk.setBirthDeathTypeCode("출생");
         pk.setReportResidentSerialNumber(request.getReportResident());
-        pk.setResidentSerialNumber(sNum);
+
 
         report.setBirthDeathReportResidentPK(pk);
         report.setResident(resident);
         report.setBirthDeathReportDate(getTime());
         report.setBirthReportQualificationsCode(request.getRelationship());
-        report.setEmail(request.getEmail());
-        report.setPhoneNumber(request.getPhoneNumber());
+        if(Objects.nonNull(request.getEmail())) {
+            report.setEmail(request.getEmail());
+        }
+        if(Objects.nonNull(request.getPhoneNumber())) {
+            report.setPhoneNumber(request.getPhoneNumber());
+        }
 
         birthDeathReportResidentRepository.save(report);
     }
 
     @Transactional
     @Override
-    public void birthModify(int sNum, int tNum, BirthRequest request) {
+    public void birthModify(int sNum, int tNum, BdRequest request) {
         BirthDeathReportResident.BirthDeathReportResidentPK pk = getPK(tNum, sNum);
         pk.setBirthDeathTypeCode("출생");
 
@@ -72,8 +79,6 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
 
         report.setBirthDeathReportDate(getTime());
         report.setBirthReportQualificationsCode(request.getRelationship());
-        report.setEmail(request.getEmail());
-        report.setPhoneNumber(request.getPhoneNumber());
 
         birthDeathReportResidentRepository.save(report);
     }
@@ -102,13 +107,18 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         report.setResident(resident);
         report.setBirthDeathReportDate(getTime());
         report.setBirthReportQualificationsCode(request.getRelationship());
-        report.setEmail(request.getEmail());
-        report.setPhoneNumber(request.getPhoneNumber());
+        if(Objects.nonNull(request.getEmail())) {
+            report.setEmail(request.getEmail());
+        }
+        if(Objects.nonNull(request.getPhoneNumber())) {
+            report.setPhoneNumber(request.getPhoneNumber());
+        }
+
     }
 
     @Transactional
     @Override
-    public void deathModify(int sNum, int tNum, DeathRequest request) {
+    public void deathModify(int sNum, int tNum, BdRequest request) {
         BirthDeathReportResident.BirthDeathReportResidentPK pk = getPK(sNum, tNum);
         pk.setBirthDeathTypeCode("사망");
 
@@ -116,8 +126,6 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
 
         report.setBirthDeathReportDate(getTime());
         report.setBirthReportQualificationsCode(request.getRelationship());
-        report.setEmail(request.getEmail());
-        report.setPhoneNumber(request.getPhoneNumber());
 
         birthDeathReportResidentRepository.save(report);
     }

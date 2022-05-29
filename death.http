@@ -1,0 +1,22 @@
+POST http://localhost:8090/residents/1/death HTTP/1.1
+Content-Type: application/json
+
+{
+  "reportResident": 2,
+  "relationship": "자녀",
+  "email": "psw4887@naver.com",
+  "phoneNumber" : "010-5513-4884"
+}
+
+####
+
+PUT http://localhost:8090/residents/1/death/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "relationship": "자녀"
+}
+
+####
+
+DELETE http://localhost:8090/residents/1/death/2 HTTP/1.1

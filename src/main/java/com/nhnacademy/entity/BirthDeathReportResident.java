@@ -57,13 +57,13 @@ public class BirthDeathReportResident {
     @Embeddable
     public static class BirthDeathReportResidentPK implements Serializable {
 
-        @Column(name = "birth_date_type_code")
+        @Column(name = "resident_serial_number")
+        private Integer residentSerialNumber;
+
+        @Column(name = "birth_death_type_code")
         private String birthDeathTypeCode;
 
         @Column(name = "report_resident_serial_number")
         private Integer reportResidentSerialNumber;
-
-        @Column(name = "resident_serial_number")
-        private Integer residentSerialNumber;
     }
 }

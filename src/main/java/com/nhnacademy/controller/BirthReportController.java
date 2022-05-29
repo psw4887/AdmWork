@@ -1,5 +1,6 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.domain.vo.BdRequest;
 import com.nhnacademy.domain.vo.BirthRequest;
 import com.nhnacademy.service.BirthDeathReportResidentService;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class BirthReportController {
     @PutMapping("/{targetSerialNumber}")
     public void birthReportModify(@PathVariable("serialNumber")int sNum,
                                   @PathVariable("targetSerialNumber")int tNum,
-                                  @RequestBody BirthRequest request) {
+                                  @RequestBody BdRequest request) {
         service.birthModify(sNum, tNum, request);
     }
 

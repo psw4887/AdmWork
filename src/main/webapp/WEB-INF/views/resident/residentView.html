@@ -5,14 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<table border="1" align="center">
+<h2 style="text-align: center">Resident List</h2>
+<div style="text-align: center; display: flex; justify-content: center">
+<table style="text-align: center; border-style: solid">
     <tr>
         <th>No</th>
         <th>Name</th>
         <th>Gender</th>
         <th>Delete</th>
     </tr>
-    <tr th:each="resident : ${lists}" align="center">
+    <tr th:each="resident : ${lists}">
         <td th:text="${resident.sNum}"></td>
         <td th:text="${resident.name}"></td>
         <td th:text="${resident.gender}"></td>
@@ -23,7 +25,9 @@
         </form>
     </tr>
 </table>
-<div align="center">
+</div>
+<br />
+<div style="text-align: center">
 <a th:href="'/resident/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
     <span th:text="'('+ ${page} + 'page)'"></span>
 <a th:href="'/resident/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
