@@ -7,32 +7,32 @@
 <body>
 <h2 style="text-align: center">Resident List</h2>
 <div style="text-align: center; display: flex; justify-content: center">
-<table style="text-align: center; border-style: solid">
+<table style="text-align: center" border = 1>
     <tr>
         <th>No</th>
         <th>Name</th>
         <th>Gender</th>
-        <th>Delete</th>
         <th>Family</th>
         <th>Registration</th>
         <th>Birth</th>
         <th>Death</th>
         <th>IssueList</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="resident : ${lists}">
         <td th:text="${resident.sNum}"></td>
         <td th:text="${resident.name}"></td>
         <td th:text="${resident.gender}"></td>
-        <form th:action="'/resident/delete?sNum=' + ${resident.sNum}" method="post">
-            <td>
-                <input type="submit" value="delete"></span>
-            </td>
-        </form>
         <td><a th:href="'/certificates/family'" th:text="View"></a></td>
         <td><a th:href="'/certificates/registration'" th:text="View"></a></td>
         <td><a th:href="'/certificates/birth'" th:text="View"></a></td>
         <td><a th:href="'/certificates/death'" th:text="View"></a></td>
         <td><a th:href="'/certificates/list'" th:text="View"></a></td>
+        <form th:action="'/resident/delete?sNum=' + ${resident.sNum}" method="post">
+            <td>
+                <input type="submit" value="delete"></span>
+            </td>
+        </form>
     </tr>
 </table>
 </div>

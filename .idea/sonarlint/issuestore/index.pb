@@ -1,16 +1,12 @@
 
 V
 &src/main/java/com/nhnacademy/Base.java,8\0\80df718b9f8afa568983a160d8e79f7007c4c246
-o
-?src/main/java/com/nhnacademy/repository/FamilyRelationShip.java,8\4\847c282259a814c5d92cae84c6bc575524ff58b2
 u
 Esrc/main/java/com/nhnacademy/exception/ResidentNotFoundException.java,7\c\7c2057dca1f7e573a574efdb9f12541fffabfe72
 v
 Fsrc/main/java/com/nhnacademy/exception/HouseHoldNotFoundException.java,0\f\0feb3d0d06e358caff15e38ac367f2e99a14e76a
 s
 Csrc/main/java/com/nhnacademy/exception/FamilyNotFoundException.java,6\3\63bad87591dfb64fc65ba09544217e54aa5bb3a7
-x
-Hsrc/main/java/com/nhnacademy/exception/CertificateNotFoundException.java,4\8\48ed446f3b696708b9ffb1c207f16f3bc9f443ed
 u
 Esrc/main/java/com/nhnacademy/entity/HouseholdCompositionResident.java,3\5\35d35cdeb7feefa23e5d3fb7f84b02621c03baec
 q

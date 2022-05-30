@@ -4,7 +4,6 @@ import com.nhnacademy.domain.dto.BirthDTO;
 import com.nhnacademy.domain.dto.DeathDTO;
 import com.nhnacademy.service.BirthDeathReportResidentService;
 import com.nhnacademy.service.ResidentService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/certificates")
@@ -26,19 +26,19 @@ public class CertificateIssueController {
     }
 
     @PostMapping("/family")
-    public String family(@Param("sNum") int sNum,
+    public String family(@RequestParam ("sNum") int sNum,
                          Model model) {
         return "certificate/family";
     }
 
     @PostMapping("/registration")
-    public String registration(@Param("sNum") int sNum,
+    public String registration(@RequestParam("sNum") int sNum,
                                Model model) {
         return "certificate/registration";
     }
 
     @PostMapping("/birth")
-    public String birth(@Param("sNum") int sNum,
+    public String birth(@RequestParam("sNum") int sNum,
                         Model model) {
         List<BirthDTO> births = birthDeathReportResidentService.getBirthReport(sNum);
         model.addAttribute("births", births);
@@ -46,7 +46,7 @@ public class CertificateIssueController {
     }
 
     @PostMapping("/death")
-    public String death(@Param("sNum") int sNum,
+    public String death(@RequestParam("sNum") int sNum,
                         Model model) {
         List<DeathDTO> deaths = birthDeathReportResidentService.getDeathReport(sNum);
         model.addAttribute("Deaths", deaths);
