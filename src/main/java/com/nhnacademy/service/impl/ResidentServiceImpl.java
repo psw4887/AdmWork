@@ -6,6 +6,7 @@ import com.nhnacademy.domain.ResidentView;
 import com.nhnacademy.domain.dto.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
+import com.nhnacademy.repository.BirthDeathReportResidentRepository;
 import com.nhnacademy.repository.HouseholdCompositionResidentRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
@@ -22,11 +23,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("residentService")
 public class ResidentServiceImpl implements ResidentService {
     private final ResidentRepository residentRepository;
+    private final BirthDeathReportResidentRepository birthDeathRepository;
     private final HouseholdCompositionResidentRepository compositionResidentRepository;
 
     public ResidentServiceImpl(ResidentRepository residentRepository,
+                               BirthDeathReportResidentRepository birthDeathRepository,
                                HouseholdCompositionResidentRepository compositionResidentRepository) {
         this.residentRepository = residentRepository;
+        this.birthDeathRepository = birthDeathRepository;
         this.compositionResidentRepository = compositionResidentRepository;
     }
 
@@ -39,6 +43,8 @@ public class ResidentServiceImpl implements ResidentService {
             view.setSNum(dto.getSerialNumber());
             view.setName(dto.getName());
             view.setGender(dto.getGenderCode());
+            view.setIsBirth(!birthDeathRepository.isExistBirth(dto.getSerialNumber()).isEmpty());
+            view.setIsDeath(!birthDeathRepository.isExistDeath(dto.getSerialNumber()).isEmpty());
             views.add(view);
         }
         return views;

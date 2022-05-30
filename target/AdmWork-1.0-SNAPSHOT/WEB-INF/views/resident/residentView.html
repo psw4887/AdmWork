@@ -25,9 +25,9 @@
         <td th:text="${resident.gender}"></td>
         <td><a th:href="'/certificates/family'" th:text="View"></a></td>
         <td><a th:href="'/certificates/registration'" th:text="View"></a></td>
-        <td><a th:href="'/certificates/birth'" th:text="View"></a></td>
-        <td><a th:if="${resident.isBirth} == true" th:href="'/certificates/death'" th:text="View"></a></td>
-        <td><a th:if="${resident.isDeath} == true" th:href="'/certificates/list'" th:text="View"></a></td>
+        <td><a th:if="${resident.isBirth}" th:href="'/certificates/birth'" th:text="View"></a></td>
+        <td><a th:if="${resident.isDeath}" th:href="'/certificates/death'" th:text="View"></a></td>
+        <td><a th:href="'/certificates/list'" th:text="View"></a></td>
         <form th:action="'/resident/delete?sNum=' + ${resident.sNum}" method="post">
             <td>
                 <input type="submit" value="delete"></span>

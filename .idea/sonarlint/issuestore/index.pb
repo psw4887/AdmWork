@@ -13,8 +13,6 @@ q
 Asrc/main/java/com/nhnacademy/entity/HouseholdMovementAddress.java,a\4\a4e6a0a4edacfa7b37257dfd3873e6159a638be0
 u
 Esrc/main/java/com/nhnacademy/exception/ValidationFailedException.java,a\2\a2f40d1db42fd3e44eb380acff2a0b153646d7e9
-q
-Asrc/main/java/com/nhnacademy/entity/BirthDeathReportResident.java,5\1\5160c86cb72f764a0608ed4795f15d2e379a09ac
 i
 9src/main/java/com/nhnacademy/entity/CertificateIssue.java,1\1\11017a662cd6c4a6aca998713a9c8d56582d57a7
 k
