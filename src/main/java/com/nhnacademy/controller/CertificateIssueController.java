@@ -7,6 +7,7 @@ import com.nhnacademy.service.ResidentService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -50,5 +51,10 @@ public class CertificateIssueController {
         List<DeathDTO> deaths = birthDeathReportResidentService.getDeathReport(sNum);
         model.addAttribute("Deaths", deaths);
         return "certificate/death";
+    }
+
+    @GetMapping("/list")
+    public String viewList() {
+        return "certificate/list";
     }
 }

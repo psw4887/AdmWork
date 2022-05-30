@@ -13,6 +13,11 @@
         <th>Name</th>
         <th>Gender</th>
         <th>Delete</th>
+        <th>Family</th>
+        <th>Registration</th>
+        <th>Birth</th>
+        <th>Death</th>
+        <th>IssueList</th>
     </tr>
     <tr th:each="resident : ${lists}">
         <td th:text="${resident.sNum}"></td>
@@ -23,6 +28,11 @@
                 <input type="submit" value="delete"></span>
             </td>
         </form>
+        <td><a th:href="'/certificates/family'" th:text="View"></a></td>
+        <td><a th:href="'/certificates/registration'" th:text="View"></a></td>
+        <td><a th:href="'/certificates/birth'" th:text="View"></a></td>
+        <td><a th:href="'/certificates/death'" th:text="View"></a></td>
+        <td><a th:href="'/certificates/list'" th:text="View"></a></td>
     </tr>
 </table>
 </div>
