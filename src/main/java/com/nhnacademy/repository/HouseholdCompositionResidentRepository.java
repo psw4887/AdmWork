@@ -1,9 +1,12 @@
 package com.nhnacademy.repository;
 
+import com.nhnacademy.entity.Household;
 import com.nhnacademy.entity.HouseholdCompositionResident;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface HouseholdCompositionResidentRepository extends
         JpaRepository<HouseholdCompositionResident, HouseholdCompositionResident.HouseholdCompositionResidentPK>,
@@ -14,6 +17,12 @@ public interface HouseholdCompositionResidentRepository extends
             "h.relationshipCode = ?2")
     Integer getHouseSerialNumberByResidentNumber(int sNum, String bon);
 
+    @Query("select h.household.serialNumber from HouseholdCompositionResident as h " +
+            "where h.resident.serialNumber = ?1")
+    Integer getHouseSerialNumberByResidentNumber(int sNum);
+
     @Override
     BooleanExpression checkHouseholderMember(int hNum);
+
+    List<HouseholdCompositionResident> getAllByHousehold(Household household);
 }

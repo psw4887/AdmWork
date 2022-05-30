@@ -4,13 +4,11 @@ import com.nhnacademy.domain.dto.family.FamilyCertFamilyDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.family.ResidentCertFamilyDTO;
-import com.nhnacademy.entity.CertificateIssue;
-import com.nhnacademy.entity.Resident;
+import com.nhnacademy.domain.dto.registration.RegistrationDTO;
+import com.nhnacademy.entity.*;
+import com.nhnacademy.exception.HouseHoldNotFoundException;
 import com.nhnacademy.exception.ResidentNotFoundException;
-import com.nhnacademy.repository.BirthDeathReportResidentRepository;
-import com.nhnacademy.repository.CertificateIssueRepository;
-import com.nhnacademy.repository.FamilyRelationShipRepository;
-import com.nhnacademy.repository.ResidentRepository;
+import com.nhnacademy.repository.*;
 import com.nhnacademy.service.CertificateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,15 +25,21 @@ public class CertificateServiceImpl implements CertificateService {
     private final ResidentRepository rRepository;
     private final FamilyRelationShipRepository fRepository;
     private final CertificateIssueRepository cRepository;
+    private final HouseholdRepository hRepository;
+    private final HouseholdCompositionResidentRepository hcRepository;
+    private final HouseholdMovementAddressRepository hmRepository;
     private final BirthDeathReportResidentRepository bRepository;
 
     private static final Random random = new Random();
 
     public CertificateServiceImpl(ResidentRepository rRepository, FamilyRelationShipRepository fRepository,
-                                  CertificateIssueRepository cRepository, BirthDeathReportResidentRepository bRepository) {
+                                  CertificateIssueRepository cRepository, HouseholdRepository hRepository, HouseholdCompositionResidentRepository hcRepository, HouseholdMovementAddressRepository hmRepository, BirthDeathReportResidentRepository bRepository) {
         this.rRepository = rRepository;
         this.fRepository = fRepository;
         this.cRepository = cRepository;
+        this.hRepository = hRepository;
+        this.hcRepository = hcRepository;
+        this.hmRepository = hmRepository;
         this.bRepository = bRepository;
     }
 
@@ -72,15 +76,35 @@ public class CertificateServiceImpl implements CertificateService {
             rDto.add(resiDTO);
 
         }
-        String before = String.valueOf(random.nextInt(999)+9000);
+        String before = String.valueOf(random.nextInt(8999)+1000);
         String center = String.valueOf(random.nextInt(10000)+9999);
         String after = String.valueOf(random.nextInt(10000000)+9999999);
+
         String cNum = before + center + after;
         rDto = sortRelation(rDto);
 
         CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "가족관계증명서", LocalDate.now());
         addCertificate(cert);
         return new FamilyCertificateDTO(cNum, LocalDate.now(), resident.getRegistrationBaseAddress(), rDto);
+    }
+
+    @Override
+    public RegistrationDTO getRegistrationCertificate(int sNum) {
+        Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+        Integer hNum = hcRepository.getHouseSerialNumberByResidentNumber(sNum);
+        Household household = hRepository.findById(hNum).orElseThrow(HouseHoldNotFoundException::new);
+        List<HouseholdCompositionResident> list = hcRepository.getAllByHousehold(household);
+        List<HouseholdMovementAddress> moveList = hmRepository.getAllByHousehold(household);
+
+        String before = String.valueOf(random.nextInt(999)+9000);
+        String center = String.valueOf(random.nextInt(10000)+9999);
+        String after = String.valueOf(random.nextInt(10000000)+9999999);
+        String cNum = before + center + after;
+
+        CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "주민등록등본", LocalDate.now());
+        addCertificate(cert);
+
+        return new RegistrationDTO(cNum, LocalDate.now(), list, moveList);
     }
 
     @Override

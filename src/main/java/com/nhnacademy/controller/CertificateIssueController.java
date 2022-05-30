@@ -2,6 +2,7 @@ package com.nhnacademy.controller;
 
 import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
+import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.CertificateIssue;
 import com.nhnacademy.service.CertificateService;
 import org.springframework.data.domain.PageRequest;
@@ -41,6 +42,16 @@ public class CertificateIssueController {
     @GetMapping("/registration")
     public String registration(@RequestParam("sNum") int sNum,
                                Model model) {
+        RegistrationDTO dto = cService.getRegistrationCertificate(sNum);
+        for(int i = 0; i < dto.getResidents().size(); i++) {
+            if (dto.getResidents().get(i).getRelationshipCode().equals("본인")) {
+                model.addAttribute("holder", dto.getResidents().get(i));
+            }
+        }
+        model.addAttribute("dto", dto);
+        model.addAttribute("list", dto.getResidents());
+        model.addAttribute("address", dto.getAddresses());
+
         return "certificate/registration";
     }
 
