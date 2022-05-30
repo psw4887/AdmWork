@@ -1,9 +1,7 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.dto.BirthDTO;
 import com.nhnacademy.domain.vo.BdRequest;
 import com.nhnacademy.domain.vo.BirthRequest;
-import com.nhnacademy.domain.dto.DeathDTO;
 import com.nhnacademy.domain.vo.DeathRequest;
 import com.nhnacademy.entity.BirthDeathReportResident;
 import com.nhnacademy.entity.Resident;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 @Service("birthDeathReportResidentService")

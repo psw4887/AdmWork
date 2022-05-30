@@ -7,6 +7,7 @@ import com.nhnacademy.domain.dto.ResidentDTO;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.BirthDeathReportResidentRepository;
+import com.nhnacademy.repository.FamilyRelationShipRepository;
 import com.nhnacademy.repository.HouseholdCompositionResidentRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
@@ -23,13 +24,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("residentService")
 public class ResidentServiceImpl implements ResidentService {
     private final ResidentRepository residentRepository;
+    private final FamilyRelationShipRepository familyRepository;
     private final BirthDeathReportResidentRepository birthDeathRepository;
     private final HouseholdCompositionResidentRepository compositionResidentRepository;
 
     public ResidentServiceImpl(ResidentRepository residentRepository,
+                               FamilyRelationShipRepository familyRepository,
                                BirthDeathReportResidentRepository birthDeathRepository,
                                HouseholdCompositionResidentRepository compositionResidentRepository) {
         this.residentRepository = residentRepository;
+        this.familyRepository = familyRepository;
         this.birthDeathRepository = birthDeathRepository;
         this.compositionResidentRepository = compositionResidentRepository;
     }
@@ -82,6 +86,8 @@ public class ResidentServiceImpl implements ResidentService {
         Integer hNum = compositionResidentRepository.getHouseSerialNumberByResidentNumber(sNum, "본인");
         if (Objects.isNull(hNum) || Objects.isNull(compositionResidentRepository.checkHouseholderMember(hNum))) {
             residentRepository.deleteById(sNum);
+            familyRepository.findForDeleteFamily(sNum);
+            birthDeathRepository.findForDeleteReport(sNum);
         } else {
             log.error("남은가족이 있어 삭제가 불가능합니다.");
         }

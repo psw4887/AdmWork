@@ -16,6 +16,4 @@ Esrc/main/java/com/nhnacademy/exception/ValidationFailedException.java,a\2\a2f4
 i
 9src/main/java/com/nhnacademy/entity/CertificateIssue.java,1\1\11017a662cd6c4a6aca998713a9c8d56582d57a7
 k
-;src/main/java/com/nhnacademy/entity/FamilyRelationShip.java,f\7\f72c9e7b65083ec296b150235fe8f6338c0ff3af
-k
 ;src/main/java/com/nhnacademy/controller/ControllerBase.java,d\0\d072bb79a2ba0a12e547c95efe7e7fec88c3a3e0
