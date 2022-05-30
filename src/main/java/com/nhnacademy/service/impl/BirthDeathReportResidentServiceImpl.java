@@ -30,18 +30,6 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
         this.residentRepository = residentRepository;
     }
 
-    @Override
-    public List<BirthDTO> getBirthReport(int sNum) {
-        Resident resident = residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
-        return birthDeathReportResidentRepository.findBirthReportByResident(resident);
-    }
-
-    @Override
-    public List<DeathDTO> getDeathReport(int sNum) {
-        Resident resident = residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
-        return birthDeathReportResidentRepository.findDeathReportByResident(resident);
-    }
-
     @Transactional
     @Override
     public void birthRegister(int sNum, BirthRequest request) {

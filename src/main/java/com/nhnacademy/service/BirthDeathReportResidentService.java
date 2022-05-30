@@ -1,18 +1,10 @@
 package com.nhnacademy.service;
 
-import com.nhnacademy.domain.dto.BirthDTO;
 import com.nhnacademy.domain.vo.BdRequest;
 import com.nhnacademy.domain.vo.BirthRequest;
-import com.nhnacademy.domain.dto.DeathDTO;
 import com.nhnacademy.domain.vo.DeathRequest;
 
-import java.util.List;
-
 public interface BirthDeathReportResidentService {
-
-    List<BirthDTO> getBirthReport(int sNum);
-
-    List<DeathDTO> getDeathReport(int sNum);
 
     void birthRegister(int sNum, BirthRequest request);
 

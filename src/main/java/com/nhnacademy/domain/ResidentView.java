@@ -13,4 +13,8 @@ public class ResidentView {
     String name;
 
     String gender;
+
+    Boolean isBirth;
+
+    Boolean isDeath;
 }
