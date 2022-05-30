@@ -27,7 +27,7 @@
         <td><a th:href="'/certificates/registration?sNum=' + ${resident.sNum}" th:text="View"></a></td>
         <td><a th:if="${resident.isBirth}" th:href="'/certificates/birth?sNum=' + ${resident.sNum}" th:text="View"></a></td>
         <td><a th:if="${resident.isDeath}" th:href="'/certificates/death?sNum=' + ${resident.sNum}" th:text="View"></a></td>
-        <td><a th:href="'/certificates/list?sNum=' + ${resident.sNum}" th:text="View"></a></td>
+        <td><a th:href="'/certificates/list?sNum=' + ${resident.sNum} + '&page=' + ${0}" th:text="View"></a></td>
         <form th:action="'/resident/delete?sNum=' + ${resident.sNum}" method="post">
             <td>
                 <input type="submit" value="delete"></span>

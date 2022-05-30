@@ -28,11 +28,13 @@ public class ResidentController {
         PageRequest pageRequest = PageRequest.of(page, 5);
         List<ResidentView> list = residentService.allResidents(pageRequest);
         model.addAttribute("isEnd", 0);
+
         if(list.size() < 5) {
             model.addAttribute("isEnd", 1);
         }
         model.addAttribute("page", page);
         model.addAttribute("lists", list);
+
         return "resident/residentView";
     }
 

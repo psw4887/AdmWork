@@ -1,10 +1,10 @@
 package com.nhnacademy.service.impl;
 
-import com.nhnacademy.domain.dto.CertificateDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertFamilyDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.family.ResidentCertFamilyDTO;
+import com.nhnacademy.entity.CertificateIssue;
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.BirthDeathReportResidentRepository;
@@ -13,8 +13,9 @@ import com.nhnacademy.repository.FamilyRelationShipRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.CertificateService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,8 @@ public class CertificateServiceImpl implements CertificateService {
     }
 
     @Override
-    public List<CertificateDTO> getCertificateList(int sNUm) {
-        return null;
+    public List<CertificateIssue> getCertificateList(int sNUm, Pageable pageable) {
+        return cRepository.getAllByResident(rRepository.findById(sNUm).orElseThrow(ResidentNotFoundException::new), pageable).getContent();
     }
 
     @Override
@@ -57,6 +58,7 @@ public class CertificateServiceImpl implements CertificateService {
         familyCertResidentDTO.setRelation("본인");
 
         rDto.add(familyCertResidentDTO);
+
         for (FamilyCertFamilyDTO dto : fDto) {
             ResidentCertFamilyDTO residentDTO = rRepository.getAllBySerialNumber(dto.getFamilyRelationShipPK().getFamilyResidentSerialNumber());
             FamilyCertResidentDTO resiDTO = new FamilyCertResidentDTO();
@@ -68,12 +70,23 @@ public class CertificateServiceImpl implements CertificateService {
             resiDTO.setRelation(dto.getFamilyRelationShipCode());
 
             rDto.add(resiDTO);
+
         }
-        String before = String.valueOf(random.nextInt(90000000)+9999999);
+        String before = String.valueOf(random.nextInt(999)+9000);
+        String center = String.valueOf(random.nextInt(10000)+9999);
         String after = String.valueOf(random.nextInt(10000000)+9999999);
-        String cNum = before + after;
+        String cNum = before + center + after;
         rDto = sortRelation(rDto);
+
+        CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "가족관계증명서", LocalDate.now());
+        addCertificate(cert);
         return new FamilyCertificateDTO(cNum, LocalDate.now(), resident.getRegistrationBaseAddress(), rDto);
+    }
+
+    @Override
+    @Transactional
+    public void addCertificate(CertificateIssue cert) {
+        cRepository.save(cert);
     }
 
     private List<FamilyCertResidentDTO> sortRelation(List<FamilyCertResidentDTO> list) {
