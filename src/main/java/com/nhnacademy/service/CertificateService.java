@@ -15,5 +15,7 @@ public interface CertificateService {
 
     RegistrationDTO getRegistrationCertificate(int sNum);
 
+
+
     void addCertificate(CertificateIssue cert);
 }
