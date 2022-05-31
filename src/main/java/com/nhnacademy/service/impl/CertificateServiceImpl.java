@@ -121,7 +121,8 @@ public class CertificateServiceImpl implements CertificateService {
 
     private List<FamilyCertResidentDTO> sortRelation(List<FamilyCertResidentDTO> list) {
         List<FamilyCertResidentDTO> sortList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        int child = 0;
+        for (int i = 0; i < 10; i++) {
             sortList.add(null);
         }
         for(FamilyCertResidentDTO dto : list) {
@@ -143,14 +144,25 @@ public class CertificateServiceImpl implements CertificateService {
                     break;
                 }
                 case "자녀": {
-                    sortList.set(4, dto);
+                    if(child != 0) {
+                        sortList.add(4, dto);
+                    } else {
+                        sortList.set(4, dto);
+                        child++;
+                    }
                     break;
                 }
             }
         }
-        for (int i =0; i<5; i++) {
+        for (int i =0; i<10; i++) {
             sortList.remove(null);
         }
+        return sortList;
+    }
+
+    private List<HouseholdCompositionResident> sortHouseholdRelation(List<HouseholdCompositionResident> list) {
+        List<HouseholdCompositionResident> sortList = new ArrayList<>();
+
         return sortList;
     }
 }
