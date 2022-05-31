@@ -2,8 +2,8 @@ package com.nhnacademy.controller;
 
 import com.nhnacademy.domain.dto.birth.BirthDTO;
 import com.nhnacademy.domain.dto.death.DeathDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertResidentDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.CertificateIssue;
 import com.nhnacademy.service.CertificateService;

@@ -2,10 +2,10 @@ package com.nhnacademy.service.impl;
 
 import com.nhnacademy.domain.dto.birth.BirthDTO;
 import com.nhnacademy.domain.dto.death.DeathDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertFamilyDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
-import com.nhnacademy.domain.dto.family.ResidentCertFamilyDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertFamilyDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertResidentDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertificateDTO;
+import com.nhnacademy.domain.dto.birth.family.ResidentCertFamilyDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.*;
 import com.nhnacademy.exception.HouseHoldNotFoundException;

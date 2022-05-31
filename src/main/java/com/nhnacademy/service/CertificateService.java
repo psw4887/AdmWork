@@ -2,7 +2,7 @@ package com.nhnacademy.service;
 
 import com.nhnacademy.domain.dto.birth.BirthDTO;
 import com.nhnacademy.domain.dto.death.DeathDTO;
-import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.CertificateIssue;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
 package com.nhnacademy.repository;
 
-import com.nhnacademy.domain.dto.family.FamilyCertFamilyDTO;
+import com.nhnacademy.domain.dto.birth.family.FamilyCertFamilyDTO;
 import com.nhnacademy.entity.FamilyRelationShip;
 import com.nhnacademy.entity.Resident;
 import org.springframework.data.jpa.repository.JpaRepository;

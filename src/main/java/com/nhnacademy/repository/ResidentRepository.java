@@ -1,7 +1,7 @@
 package com.nhnacademy.repository;
 
 import com.nhnacademy.domain.dto.ResidentDTO;
-import com.nhnacademy.domain.dto.family.ResidentCertFamilyDTO;
+import com.nhnacademy.domain.dto.birth.family.ResidentCertFamilyDTO;
 import com.nhnacademy.entity.Resident;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.nhnacademy.domain.dto.family;
+package com.nhnacademy.domain.dto.birth.family;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
