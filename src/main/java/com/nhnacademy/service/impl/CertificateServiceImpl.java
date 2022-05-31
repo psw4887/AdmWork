@@ -48,6 +48,7 @@ public class CertificateServiceImpl implements CertificateService {
         return cRepository.getAllByResident(rRepository.findById(sNUm).orElseThrow(ResidentNotFoundException::new), pageable).getContent();
     }
 
+    @Transactional
     @Override
     public FamilyCertificateDTO getFamilyCertificate(int sNum) {
         Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
@@ -88,6 +89,7 @@ public class CertificateServiceImpl implements CertificateService {
         return new FamilyCertificateDTO(cNum, LocalDate.now(), resident.getRegistrationBaseAddress(), rDto);
     }
 
+    @Transactional
     @Override
     public RegistrationDTO getRegistrationCertificate(int sNum) {
         Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
