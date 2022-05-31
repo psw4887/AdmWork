@@ -20,5 +20,15 @@ public interface FamilyRelationShipRepository extends
         "or f.familyRelationShipPK.familyResidentSerialNumber = ?1")
     void findForDeleteFamily(int sNum);
 
+    @Query("select f.familyRelationShipPK.familyResidentSerialNumber from FamilyRelationShip as f" +
+        " where f.familyRelationShipPK.baseResidentSerialNumber = ?1 " +
+        "and f.familyRelationShipCode = '부' ")
+    Integer findFatherByBaseSNum(int sNum);
+
+    @Query("select f.familyRelationShipPK.familyResidentSerialNumber from FamilyRelationShip as f" +
+        " where f.familyRelationShipPK.baseResidentSerialNumber = ?1 " +
+        "and f.familyRelationShipCode = '모' ")
+    Integer findMotherByBaseSNum(int sNum);
+
     List<FamilyCertFamilyDTO> getAllByResident(Resident resident);
 }

@@ -18,6 +18,14 @@ public interface BirthDeathReportResidentRepository extends
         " where b.birthDeathReportResidentPK.residentSerialNumber = ?1 and b.birthDeathReportResidentPK.birthDeathTypeCode = '사망'")
     List<BirthDeathReportResident> isExistDeath(int sNum);
 
+    @Query("select b from BirthDeathReportResident b " +
+        "where b.birthDeathReportResidentPK.residentSerialNumber = ?1 and b.birthDeathReportResidentPK.birthDeathTypeCode = '출생'")
+    BirthDeathReportResident findByBirthTargetResident(int sNum);
+
+    @Query("select b from BirthDeathReportResident b " +
+        "where b.birthDeathReportResidentPK.residentSerialNumber = ?1 and b.birthDeathReportResidentPK.birthDeathTypeCode = '사망'")
+    BirthDeathReportResident findByDeathTargetResident(int sNum);
+
     @Transactional
     @Modifying
     @Query("delete from BirthDeathReportResident as b " +

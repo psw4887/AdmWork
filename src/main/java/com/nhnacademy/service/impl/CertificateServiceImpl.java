@@ -118,13 +118,41 @@ public class CertificateServiceImpl implements CertificateService {
     @Override
     @Transactional
     public BirthDTO getBirthCertificate(int sNum) {
-        return null;
+        Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+        BirthDeathReportResident issue = bRepository.findByBirthTargetResident(sNum);
+        Integer fathersNum = fRepository.findFatherByBaseSNum(sNum);
+        Resident father = rRepository.findById(fathersNum).orElseThrow(ResidentNotFoundException::new);
+        Integer mothersNum = fRepository.findMotherByBaseSNum(sNum);
+        Resident mother = rRepository.findById(mothersNum).orElseThrow(ResidentNotFoundException::new);
+        Resident issuer = rRepository.findById(issue.getBirthDeathReportResidentPK().getReportResidentSerialNumber()).orElseThrow(ResidentNotFoundException::new);
+
+        String before = String.valueOf(random.nextInt(999)+4000);
+        String center = String.valueOf(random.nextInt(10000)+9999);
+        String after = String.valueOf(random.nextInt(10000000)+9999999);
+        String cNum = before + center + after;
+
+        CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "출생신고서", LocalDate.now());
+        addCertificate(cert);
+
+        return new BirthDTO(resident, issue, father, mother, issuer);
     }
 
     @Override
     @Transactional
     public DeathDTO getDeathCertificate(int sNum) {
-        return null;
+        Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+        BirthDeathReportResident issue = bRepository.findByDeathTargetResident(sNum);
+        Resident issuer = rRepository.findById(issue.getBirthDeathReportResidentPK().getReportResidentSerialNumber()).orElseThrow(ResidentNotFoundException::new);
+
+        String before = String.valueOf(random.nextInt(999)+7000);
+        String center = String.valueOf(random.nextInt(10000)+9999);
+        String after = String.valueOf(random.nextInt(10000000)+9999999);
+        String cNum = before + center + after;
+
+        CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "사망신고서", LocalDate.now());
+        addCertificate(cert);
+
+        return new DeathDTO(resident, issue, issuer);
     }
 
     @Override

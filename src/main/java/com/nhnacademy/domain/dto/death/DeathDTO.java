@@ -1,5 +1,6 @@
 package com.nhnacademy.domain.dto.death;
 
+import com.nhnacademy.entity.BirthDeathReportResident;
 import com.nhnacademy.entity.Resident;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class DeathDTO {
 
     String deathPlace;
 
-    Resident deathAddress;
+    String deathAddress;
 
     String issuerName;
 
@@ -30,4 +31,18 @@ public class DeathDTO {
     String email;
 
     String phoneNum;
+
+    public DeathDTO(Resident resident, BirthDeathReportResident issue, Resident issuer) {
+        this.date = issue.getBirthDeathReportDate();
+        this.deathName = resident.getName();
+        this.deathRegistration = resident.getRegistrationNumber();
+        this.deathDate = resident.getDeathDate();
+        this.deathPlace = resident.getDeathPlaceCode();
+        this.deathAddress = resident.getDeathPlaceAddress();
+        this.issuerName = issuer.getName();
+        this.issuerRegistration = issuer.getRegistrationNumber();
+        this.issuerRelation = issue.getDeathReportQualificationsCode();
+        this.email = issue.getEmail();
+        this.phoneNum = issue.getPhoneNumber();
+    }
 }

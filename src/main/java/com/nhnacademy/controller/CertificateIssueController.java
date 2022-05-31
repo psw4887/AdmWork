@@ -1,5 +1,7 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.domain.dto.birth.BirthDTO;
+import com.nhnacademy.domain.dto.death.DeathDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
@@ -58,12 +60,16 @@ public class CertificateIssueController {
     @GetMapping("/birth")
     public String birth(@RequestParam("sNum") int sNum,
                         Model model) {
+        BirthDTO dto = cService.getBirthCertificate(sNum);
+        model.addAttribute("dto", dto);
         return "certificate/birth";
     }
 
     @GetMapping("/death")
     public String death(@RequestParam("sNum") int sNum,
                         Model model) {
+        DeathDTO dto = cService.getDeathCertificate(sNum);
+        model.addAttribute("dto", dto);
         return "certificate/death";
     }
 
