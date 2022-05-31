@@ -1,5 +1,7 @@
 package com.nhnacademy.service;
 
+import com.nhnacademy.domain.dto.birth.BirthDTO;
+import com.nhnacademy.domain.dto.death.DeathDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.CertificateIssue;
@@ -15,7 +17,9 @@ public interface CertificateService {
 
     RegistrationDTO getRegistrationCertificate(int sNum);
 
+    BirthDTO getBirthCertificate(int sNum);
 
+    DeathDTO getDeathCertificate(int sNum);
 
     void addCertificate(CertificateIssue cert);
 }

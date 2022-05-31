@@ -1,5 +1,7 @@
 package com.nhnacademy.service.impl;
 
+import com.nhnacademy.domain.dto.birth.BirthDTO;
+import com.nhnacademy.domain.dto.death.DeathDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertFamilyDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertResidentDTO;
 import com.nhnacademy.domain.dto.family.FamilyCertificateDTO;
@@ -111,6 +113,18 @@ public class CertificateServiceImpl implements CertificateService {
         addCertificate(cert);
 
         return new RegistrationDTO(cNum, LocalDate.now(), list, moveList);
+    }
+
+    @Override
+    @Transactional
+    public BirthDTO getBirthCertificate(int sNum) {
+        return new BirthDTO();
+    }
+
+    @Override
+    @Transactional
+    public DeathDTO getDeathCertificate(int sNum) {
+        return null;
     }
 
     @Override
