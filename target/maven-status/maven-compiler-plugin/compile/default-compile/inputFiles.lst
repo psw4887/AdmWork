@@ -6,12 +6,12 @@ D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\ResidentService.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\entity\BirthDeathReportResident.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\impl\HouseholdCompositionServiceImpl.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\HouseholdService.java
-D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\BirthDTO.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\impl\FamilyRelationShipServiceImpl.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\exception\HouseHoldNotFoundException.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\repository\HouseholdRepository.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\exception\FamilyNotFoundException.java
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QHouseholdCompositionResident.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\registration\RegistrationDTO.java
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QHousehold.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\HouseholdCompositionService.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\repository\RepositoryBase.java
@@ -26,10 +26,11 @@ D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\HouseholdMovementCo
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\ResidentController.java
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QBirthDeathReportResident.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\entity\Household.java
-D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\DeathDTO.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\vo\HouseholdCompositionRegisterRequest.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\impl\CertificateServiceImpl.java
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QHouseholdCompositionResident_HouseholdCompositionResidentPK.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\vo\ResidentModifyRequest.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\family\FamilyCertificateDTO.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\repository\HouseholdCompositionResidentRepositoryImpl.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\config\RootConfig.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\HouseholdMovementAddressService.java
@@ -51,6 +52,7 @@ D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\ControllerBase.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\repository\HouseholdCompositionResidentRepositoryCustom.java
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QBirthDeathReportResident_BirthDeathReportResidentPK.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\family\ResidentCertFamilyDTO.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\repository\HouseholdCompositionResidentRepository.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\impl\BirthDeathReportResidentServiceImpl.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\vo\HouseholdRegisterRequest.java
@@ -58,6 +60,7 @@ D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\ResidentView.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\ResidentsController.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\vo\MovementRequest.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\entity\HouseholdMovementAddress.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\service\CertificateService.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\HouseholdController.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\indexController.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\vo\ResidentRegisterRequest.java
@@ -74,4 +77,6 @@ D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\
 D:\frok_file\AdmWork\target\generated-sources\annotations\com\nhnacademy\entity\QResident.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\exception\HouseholdMovementNotFoundException.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\controller\BirthReportController.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\family\FamilyCertFamilyDTO.java
+D:\frok_file\AdmWork\src\main\java\com\nhnacademy\domain\dto\family\FamilyCertResidentDTO.java
 D:\frok_file\AdmWork\src\main\java\com\nhnacademy\entity\FamilyRelationShip.java

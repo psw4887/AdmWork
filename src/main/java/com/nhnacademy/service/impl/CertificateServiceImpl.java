@@ -10,6 +10,7 @@ import com.nhnacademy.exception.HouseHoldNotFoundException;
 import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.*;
 import com.nhnacademy.service.CertificateService;
+import java.util.Objects;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
@@ -93,10 +94,13 @@ public class CertificateServiceImpl implements CertificateService {
     @Override
     public RegistrationDTO getRegistrationCertificate(int sNum) {
         Resident resident = rRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+        if(Objects.isNull(hcRepository.getHouseSerialNumberByResidentNumber(sNum))) {
+            return null;
+        }
         Integer hNum = hcRepository.getHouseSerialNumberByResidentNumber(sNum);
         Household household = hRepository.findById(hNum).orElseThrow(HouseHoldNotFoundException::new);
         List<HouseholdCompositionResident> list = hcRepository.getAllByHousehold(household);
-        List<HouseholdMovementAddress> moveList = hmRepository.getAllByHousehold(household);
+        List<HouseholdMovementAddress> moveList = hmRepository.getAllByHouseholdOrderByHouseholdMovementAddressPKDesc(household);
 
         String before = String.valueOf(random.nextInt(999)+9000);
         String center = String.valueOf(random.nextInt(10000)+9999);

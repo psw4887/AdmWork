@@ -5,6 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-
+<h2 style="text-align: center">Issue List</h2>
+<div style="text-align: center; display: flex; justify-content: center">
+    <table style="text-align: center" border = 1>
+        <tr>
+            <th>증명서확인번호</th>
+            <th>발급주민</th>
+            <th>증명서타입</th>
+            <th>발급일자</th>
+        </tr>
+        <tr th:each="cert : ${list}">
+            <td th:text="${cert.confirmationNumber}"></td>
+            <td th:text="${cert.resident.name}"></td>
+            <td th:text="${cert.typeCode}"></td>
+            <td th:text="${cert.issueDate}"></td>
+        </tr>
+    </table>
+</div>
+<br />
+<div style="text-align: center">
+    <a th:href="'/certificates/list?page=' + ${page - 1} + '&sNum=' + ${sNum}" th:if="${page} != 0" th:text="prev"></a>
+    <span th:text="'('+ ${page} + 'page)'"></span>
+    <a th:href="'/certificates/list?page=' + ${page + 1} + '&sNum=' + ${sNum}" th:if="${isEnd} == 0" th:text="next"></a>
+    <a style="text-align: center" th:href="'/resident/view?page=0'" th:text="'주민 목록'"></a>
+</div>
 </body>
 </html>

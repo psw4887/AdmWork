@@ -11,18 +11,19 @@
     <span th:text="'증명서확인번호 : ' + ${dto.cNum}"></span><br />
     <span th:text="'세대주 성명 : ' + ${holder.resident.name}"></span>
     <span th:text="'세대구성사유 : ' + ${holder.compositionChangeReasonCode}"></span>
-    <span th:text="'세대구성일자 : ' + ${holder.reportDate}"></span>
+    <span th:text="'|| 세대구성일자 : ' + ${holder.reportDate}"></span>
     <br />
 </div>
 <div style="text-align: center; display: flex; justify-content: center">
     <table style="text-align: center" border="1">
         <tr>
-            <th>현주소</th>
+            <th>주소구분</th>
             <th>주소</th>
             <th>신고일</th>
         </tr>
         <tr th:each="add : ${address}">
-            <td th:text="${add.lastAddressYN}"></td>
+            <td th:if="${add.lastAddressYN} == 'Y'" th:text="현주소"></td>
+            <td th:unless="${add.lastAddressYN} == 'Y'" th:text="前주소"></td>
             <td th:text="${add.houseMovementAddress}"></td>
             <td th:text="${add.householdMovementAddressPK.movementReportDate}"></td>
         </tr>

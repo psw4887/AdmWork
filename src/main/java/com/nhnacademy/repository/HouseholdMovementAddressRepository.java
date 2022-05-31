@@ -9,5 +9,5 @@ import java.util.List;
 public interface HouseholdMovementAddressRepository extends
         JpaRepository<HouseholdMovementAddress, HouseholdMovementAddress.HouseholdMovementAddressPK> {
 
-    List<HouseholdMovementAddress> getAllByHousehold(Household household);
+    List<HouseholdMovementAddress> getAllByHouseholdOrderByHouseholdMovementAddressPKDesc(Household household);
 }
