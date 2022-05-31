@@ -112,13 +112,13 @@ public class CertificateServiceImpl implements CertificateService {
         CertificateIssue cert = new CertificateIssue(Long.valueOf(cNum), resident, "주민등록등본", LocalDate.now());
         addCertificate(cert);
 
-        return new RegistrationDTO(cNum, LocalDate.now(), list, moveList);
+        return new RegistrationDTO(cNum, LocalDate.now(), sortHouseholdRelation(list), moveList);
     }
 
     @Override
     @Transactional
     public BirthDTO getBirthCertificate(int sNum) {
-        return new BirthDTO();
+        return null;
     }
 
     @Override
@@ -172,7 +172,45 @@ public class CertificateServiceImpl implements CertificateService {
 
     private List<HouseholdCompositionResident> sortHouseholdRelation(List<HouseholdCompositionResident> list) {
         List<HouseholdCompositionResident> sortList = new ArrayList<>();
-
+        int child = 4;
+        int with = 5;
+        for (int i = 0; i < 15; i++) {
+            sortList.add(null);
+        }
+        for(HouseholdCompositionResident dto : list) {
+            switch (dto.getRelationshipCode()) {
+                case "본인": {
+                    sortList.set(0, dto);
+                    break;
+                }
+                case "부": {
+                    sortList.set(1, dto);
+                    break;
+                }
+                case "모": {
+                    sortList.set(2, dto);
+                    break;
+                }
+                case "배우자": {
+                    sortList.set(3, dto);
+                    break;
+                }
+                case "자녀": {
+                    sortList.set(child, dto);
+                    child++;
+                    with++;
+                    break;
+                }
+                case "동거인": {
+                    sortList.set(with, dto);
+                    with++;
+                    break;
+                }
+            }
+        }
+        for (int i =0; i<15; i++) {
+            sortList.remove(null);
+        }
         return sortList;
     }
 }
