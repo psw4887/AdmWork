@@ -7,6 +7,7 @@ import com.nhnacademy.domain.dto.birth.family.FamilyCertificateDTO;
 import com.nhnacademy.domain.dto.registration.RegistrationDTO;
 import com.nhnacademy.entity.CertificateIssue;
 import com.nhnacademy.service.CertificateService;
+import java.util.Objects;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,9 @@ public class CertificateIssueController {
     public String registration(@RequestParam("sNum") int sNum,
                                Model model) {
         RegistrationDTO dto = cService.getRegistrationCertificate(sNum);
+        if(Objects.isNull(dto)) {
+            return "redirect:/resident/view?page=0";
+        }
         for(int i = 0; i < dto.getResidents().size(); i++) {
             if (dto.getResidents().get(i).getRelationshipCode().equals("본인")) {
                 model.addAttribute("holder", dto.getResidents().get(i));
