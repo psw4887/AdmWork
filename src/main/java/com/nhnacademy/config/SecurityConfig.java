@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("pw")
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
+                .successHandler(new LoginSuccessHandler(null))
                 .and()
             .logout()
                 .logoutUrl("/logout")

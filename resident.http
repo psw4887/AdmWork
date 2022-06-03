@@ -19,3 +19,14 @@ Content-Type: application/json
   "name": "유호철",
   "genderCode": "여"
 }
+
+#####
+
+PUT http://localhost:8090/residents/4/joiner HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": "user",
+  "pw": "123",
+  "email": "psw4887@naver.com"
+}

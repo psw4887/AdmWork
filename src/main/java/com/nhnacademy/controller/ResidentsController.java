@@ -1,5 +1,6 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.domain.ResidentJoinRequest;
 import com.nhnacademy.domain.vo.ResidentModifyRequest;
 import com.nhnacademy.domain.vo.ResidentRegisterRequest;
 import com.nhnacademy.exception.ValidationFailedException;
@@ -41,5 +42,12 @@ public class ResidentsController {
     public void residentModify(@PathVariable("serialNumber") int sNum,
                                @RequestBody ResidentModifyRequest residentModifyRequest) {
         service.residentModify(sNum, residentModifyRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{serialNumber}/joiner")
+    public void registerJoin(@PathVariable("serialNumber") int sNum,
+                               @RequestBody ResidentJoinRequest residentJoinRequest) {
+        service.residentRegisterForLogin(sNum, residentJoinRequest);
     }
 }

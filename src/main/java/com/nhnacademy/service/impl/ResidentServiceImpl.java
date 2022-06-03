@@ -1,5 +1,6 @@
 package com.nhnacademy.service.impl;
 
+import com.nhnacademy.domain.ResidentJoinRequest;
 import com.nhnacademy.domain.vo.ResidentModifyRequest;
 import com.nhnacademy.domain.vo.ResidentRegisterRequest;
 import com.nhnacademy.domain.ResidentView;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,14 +30,17 @@ public class ResidentServiceImpl implements ResidentService {
     private final BirthDeathReportResidentRepository birthDeathRepository;
     private final HouseholdCompositionResidentRepository compositionResidentRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     public ResidentServiceImpl(ResidentRepository residentRepository,
                                FamilyRelationShipRepository familyRepository,
                                BirthDeathReportResidentRepository birthDeathRepository,
-                               HouseholdCompositionResidentRepository compositionResidentRepository) {
+                               HouseholdCompositionResidentRepository compositionResidentRepository, PasswordEncoder passwordEncoder) {
         this.residentRepository = residentRepository;
         this.familyRepository = familyRepository;
         this.birthDeathRepository = birthDeathRepository;
         this.compositionResidentRepository = compositionResidentRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -91,5 +96,16 @@ public class ResidentServiceImpl implements ResidentService {
         } else {
             log.error("남은가족이 있어 삭제가 불가능합니다.");
         }
+    }
+
+    @Transactional
+    @Override
+    public void residentRegisterForLogin(int sNum, ResidentJoinRequest residentJoinRequest) {
+        Resident resident = residentRepository.findById(sNum).orElseThrow(ResidentNotFoundException::new);
+        resident.setUserId(residentJoinRequest.getId());
+        resident.setUserPw(passwordEncoder.encode(residentJoinRequest.getPw()));
+        resident.setUserEmail(residentJoinRequest.getEmail());
+
+        residentRepository.save(resident);
     }
 }

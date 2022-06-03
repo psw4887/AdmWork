@@ -1,5 +1,6 @@
 package com.nhnacademy.service;
 
+import com.nhnacademy.domain.ResidentJoinRequest;
 import com.nhnacademy.domain.vo.ResidentModifyRequest;
 import com.nhnacademy.domain.vo.ResidentRegisterRequest;
 import com.nhnacademy.domain.ResidentView;
@@ -15,4 +16,6 @@ public interface ResidentService {
     void residentModify(int sNum, ResidentModifyRequest residentModifyRequest);
 
     void residentDelete(int sNum);
+
+    void residentRegisterForLogin(int sNum, ResidentJoinRequest residentJoinRequest);
 }
