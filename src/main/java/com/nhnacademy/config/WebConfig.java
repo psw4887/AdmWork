@@ -1,8 +1,6 @@
 package com.nhnacademy.config;
 
-import ch.qos.logback.classic.pattern.MessageConverter;
 import com.nhnacademy.controller.ControllerBase;
-import java.util.List;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -12,13 +10,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -43,6 +40,15 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
     }
 
     @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+        registry.addRedirectViewController("/redirect-index", "/");
+        registry.addViewController("/auth/login").setViewName("login");
+        registry.addViewController("/auth/logout").setViewName("logout");
+        registry.addViewController("/error/403").setViewName("error403");
+    }
+
+    @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.viewResolver(thymeleafViewResolver());
     }
@@ -53,6 +59,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         thymeleafViewResolver.setTemplateEngine(templateEngine());
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
         thymeleafViewResolver.setOrder(1);
+        thymeleafViewResolver.setViewNames(new String[] { "*" });
+
         return thymeleafViewResolver;
     }
 
@@ -60,6 +68,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setTemplateEngineMessageSource(messageSource);
+        templateEngine.addDialect(new SpringSecurityDialect());
+
         return templateEngine;
     }
 
@@ -67,9 +77,10 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setPrefix("/WEB-INF/view/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
+
         return templateResolver;
     }
 }

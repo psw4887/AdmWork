@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @ComponentScan(basePackageClasses = Base.class,
@@ -30,5 +31,10 @@ public class RootConfig {
         basicDataSource.setTestWhileIdle(true);
 
         return basicDataSource;
+    }
+
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
     }
 }

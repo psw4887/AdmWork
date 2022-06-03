@@ -39,6 +39,12 @@ public class QResident extends EntityPathBase<Resident> {
 
     public final NumberPath<Integer> serialNumber = createNumber("serialNumber", Integer.class);
 
+    public final StringPath userEmail = createString("userEmail");
+
+    public final StringPath userId = createString("userId");
+
+    public final StringPath userPw = createString("userPw");
+
     public QResident(String variable) {
         super(Resident.class, forVariable(variable));
     }

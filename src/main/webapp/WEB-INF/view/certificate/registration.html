@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="text-align: center">주민등록등본</h2>
+<div style="text-align: center">
+    <span th:text="'발급일 : ' + ${dto.date}"></span>
+    <span th:text="'증명서확인번호 : ' + ${dto.cNum}"></span><br />
+    <span th:text="'세대주 성명 : ' + ${holder.resident.name}"></span>
+    <span th:text="'세대구성사유 : ' + ${holder.compositionChangeReasonCode}"></span>
+    <span th:text="'|| 세대구성일자 : ' + ${holder.reportDate}"></span>
+    <br />
+</div>
+<div style="text-align: center; display: flex; justify-content: center">
+    <table style="text-align: center" border="1">
+        <tr>
+            <th>주소구분</th>
+            <th>주소</th>
+            <th>신고일</th>
+        </tr>
+        <tr th:each="add : ${address}">
+            <td th:if="${add.lastAddressYN} == 'Y'" th:text="현주소"></td>
+            <td th:unless="${add.lastAddressYN} == 'Y'" th:text="前주소"></td>
+            <td th:text="${add.houseMovementAddress}"></td>
+            <td th:text="${add.householdMovementAddressPK.movementReportDate}"></td>
+        </tr>
+        <tr>
+            <th>세대주관계</th>
+            <th>성명</th>
+            <th>주민등록번호</th>
+            <th>신고일</th>
+            <th>변동사유</th>
+        </tr>
+        <tr th:each="resident : ${list}">
+            <td th:text="${resident.relationshipCode}"></td>
+            <td th:text="${resident.resident.name}"></td>
+            <td th:text="${resident.resident.registrationNumber}"></td>
+            <td th:text="${resident.reportDate}"></td>
+            <td th:text="${resident.compositionChangeReasonCode}"></td>
+        </tr>
+    </table>
+</div>
+<div style="text-align: center">
+    <a style="text-align: center" th:href="'/resident/view?page=0'" th:text="'주민 목록'"></a>
+</div>
+</body>
+</html>
