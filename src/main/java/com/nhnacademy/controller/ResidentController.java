@@ -3,13 +3,18 @@ package com.nhnacademy.controller;
 import com.nhnacademy.domain.ResidentJoinRequest;
 import com.nhnacademy.domain.ResidentView;
 import com.nhnacademy.service.ResidentService;
+
+import java.security.Principal;
 import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequestMapping("/resident")
 public class ResidentController {
@@ -22,9 +27,9 @@ public class ResidentController {
 
     @GetMapping ("/view")
     public String viewResidentList(@RequestParam("page") Integer page,
-                                   Model model) {
+                                   Model model, Principal principal) {
         PageRequest pageRequest = PageRequest.of(page, 5);
-        List<ResidentView> list = residentService.allResidents(pageRequest);
+        List<ResidentView> list = residentService.allResidents(pageRequest, principal.getName());
         model.addAttribute("isEnd", 0);
 
         if(list.size() < 5) {

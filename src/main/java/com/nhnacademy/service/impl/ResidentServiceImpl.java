@@ -29,7 +29,6 @@ public class ResidentServiceImpl implements ResidentService {
     private final FamilyRelationShipRepository familyRepository;
     private final BirthDeathReportResidentRepository birthDeathRepository;
     private final HouseholdCompositionResidentRepository compositionResidentRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     public ResidentServiceImpl(ResidentRepository residentRepository,
@@ -44,9 +43,11 @@ public class ResidentServiceImpl implements ResidentService {
     }
 
     @Override
-    public List<ResidentView> allResidents(Pageable pageable) {
+    public List<ResidentView> allResidents(Pageable pageable, String name) {
         List<ResidentView> views = new ArrayList<>();
-        List<ResidentDTO> list = residentRepository.getAllBy(pageable).getContent();
+        Resident resident = residentRepository.findByUserId(name).orElseThrow(ResidentNotFoundException::new);
+        Integer hNum = compositionResidentRepository.getHouseSerialNumberByResidentNumber(resident.getSerialNumber());
+        List<ResidentDTO> list = residentRepository.getListByUser(pageable, hNum).getContent();
         for (ResidentDTO dto:list) {
             ResidentView view = new ResidentView();
             view.setSNum(dto.getSerialNumber());

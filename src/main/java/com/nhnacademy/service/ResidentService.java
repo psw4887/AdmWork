@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 
 public interface ResidentService {
-    List<ResidentView> allResidents(Pageable pageable);
+    List<ResidentView> allResidents(Pageable pageable, String name);
 
     void residentRegister(ResidentRegisterRequest residentRegisterRequest);
 
