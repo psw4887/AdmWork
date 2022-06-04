@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joiner</title>
+</head>
+<body>
+<form method="post" action="/resident/joiner">
+    sNum: <input type="text" name="sNum" /><br />
+    ID: <input type="text" name="id" /><br />
+    PW: <input type="text" name="pw" /><br />
+    EMAIL: <input type="text" name="email" /><br />
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="submit" />
+</form>
+</body>
+</html>

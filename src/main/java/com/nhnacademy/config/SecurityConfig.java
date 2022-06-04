@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .and()
             .csrf()
-                .and()
+                .disable()//FIXME : REST API POST, PUT 메소드 작동
             .sessionManagement()
                 .sessionFixation()
                 .none()

@@ -1,5 +1,6 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.domain.ResidentJoinRequest;
 import com.nhnacademy.domain.ResidentView;
 import com.nhnacademy.service.ResidentService;
 import java.util.List;
@@ -33,6 +34,20 @@ public class ResidentController {
         model.addAttribute("lists", list);
 
         return "resident/residentView";
+    }
+
+    @GetMapping("/joiner")
+    public String readyLogin() {
+        return "resident/joinForm";
+    }
+
+    @PostMapping("/joiner")
+    public String registerJoin(@RequestParam("sNum") int sNum,
+                             @RequestParam("id") String id,
+                             @RequestParam("pw") String pw,
+                             @RequestParam("email") String email) {
+        residentService.residentRegisterForLogin(sNum, new ResidentJoinRequest(id, pw, email));
+        return "redirect:/resident/view?page=0&size=5";
     }
 
     @PostMapping("/delete")
