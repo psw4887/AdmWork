@@ -1,15 +1,19 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.git.ResponseGit;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.nhnacademy.service.CustomGitLoginService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+@Controller
 public class GitController {
+    private final CustomGitLoginService service;
 
-    @PostMapping("https://github.com/login/oauth/access_token")
-    public void responseGitId(@RequestBody ResponseGit responseGit) {
+    public GitController(CustomGitLoginService service) {
+        this.service = service;
+    }
 
+    @GetMapping("/oauth2/authorization/github")
+    public void readyGitLogin() {
+        service.buildGitRequest();
     }
 }
