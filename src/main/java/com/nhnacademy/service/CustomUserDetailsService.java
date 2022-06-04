@@ -2,7 +2,13 @@ package com.nhnacademy.service;
 
 import com.nhnacademy.entity.Resident;
 import com.nhnacademy.repository.ResidentRepository;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,8 +29,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         Resident resident = residentRepository.findByUserId(username)
             .orElseThrow(() -> new UsernameNotFoundException(username + "not found"));
 
-        return new User(resident.getUserId(), resident.getUserPw(),
-            Collections.singletonList(new SimpleGrantedAuthority("ROLE_MEMBER")));
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_MEMBER");
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(authority);
+
+        return new User(resident.getUserId(), resident.getUserPw(), authorities);
     }
 }
 

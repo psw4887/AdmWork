@@ -47,7 +47,7 @@ public class ResidentController {
                              @RequestParam("pw") String pw,
                              @RequestParam("email") String email) {
         residentService.residentRegisterForLogin(sNum, new ResidentJoinRequest(id, pw, email));
-        return "redirect:/resident/view?page=0&size=5";
+        return "redirect:/";
     }
 
     @PostMapping("/delete")
