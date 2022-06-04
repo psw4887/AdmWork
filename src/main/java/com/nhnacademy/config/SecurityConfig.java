@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("pw")
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
-                .successHandler(new LoginSuccessHandler(null))
+                .successHandler(loginSuccessHandler(null))
                 .and()
             .oauth2Login()
                 .loginPage("/auth/login")
@@ -84,8 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationSuccessHandler loginSuccessHandler(
-        RedisTemplate<String, String> redisTemplate) {
+    public AuthenticationSuccessHandler loginSuccessHandler(RedisTemplate<String, String> redisTemplate) {
         return new LoginSuccessHandler(redisTemplate);
     }
 

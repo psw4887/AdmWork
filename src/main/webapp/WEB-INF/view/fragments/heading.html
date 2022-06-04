@@ -2,14 +2,13 @@
 <html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div sec:authorize="isAuthenticated()">
-    <a th:href="'/resident/view?page=0'">Resident List</a>
-    <br />
-    <a href="/auth/logout">Logout</a>
+    <h3 th:text="Welcome"><span sec:authentication="principal.username"></span></h3>
+    <h3><a th:href="'/resident/view?page=0'">Resident List</a></h3>
+    <h3><a href="/auth/logout">Logout</a></h3>
 </div>
 <div sec:authorize="!isAuthenticated()">
-    <a href="/redirect-index">Login</a>
-    <br />
-    <a href="/resident/joiner">Joiner</a>
+    <h3><a href="/redirect-index">Login</a></h3>
+    <h3><a href="/resident/joiner">Joiner</a></h3>
 </div>
 <br />
 <br />
