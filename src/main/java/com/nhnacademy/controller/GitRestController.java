@@ -9,6 +9,7 @@ import com.nhnacademy.entity.Resident;
 import com.nhnacademy.service.CustomGitLoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,8 @@ public class GitRestController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/login/oauth2/code/github")
     public void sendGitLoginInfo(HttpServletRequest request,
-                                       HttpServletResponse response) throws IOException {
+                                 HttpServletResponse response,
+                                 Model model) throws IOException {
         CodeGit codeGit = new CodeGit(request.getParameter("code"), request.getParameter("state"));
         if (!codeGit.getState().equals(service.getCookie().get("state"))) {
                 response.sendRedirect("/auth/login");
@@ -36,9 +38,8 @@ public class GitRestController {
 
         AuthToken authToken = service.getAuthToken(codeGit);
         GitProfile gitProfile = service.getGithubProfile(authToken);
-        Resident resident = service.findResidentByEmail(gitProfile.getEmail(), response);
-
-        request.getSession().setAttribute("gitUser", resident);
+        Resident resident = service.findResidentByEmail(gitProfile.getName(), response);
+        //FIXME : profile의 email이 계속 NULL??
 
         response.sendRedirect("/");
     }

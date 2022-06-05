@@ -13,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -52,7 +53,7 @@ public class CustomGitLoginService {
         UriComponents url = UriComponentsBuilder.fromHttpUrl("https://github.com/login/oauth/authorize")
                 .queryParam("client_id", "fcaf07655762ce4a267b")
                 .queryParam("redirect_uri", "http://localhost:8090/login/oauth2/code/github")
-                .queryParam("scope", "name")
+                .queryParam("scope", "user")
                 .queryParam("state", state)
                 .build();
         cookie.put("state", state);
@@ -103,7 +104,7 @@ public class CustomGitLoginService {
     private HttpEntity<MultiValueMap<String, String>> getProfileRequestEntity(AuthToken authToken) {
 
         HttpHeaders infoRequestHeaders = new HttpHeaders();
-        infoRequestHeaders.add("Authorization", "token" + authToken.getAccessToken());
+        infoRequestHeaders.add("Authorization", "token " + authToken.getAccessToken());
         return new HttpEntity<>(infoRequestHeaders);
     }
 }

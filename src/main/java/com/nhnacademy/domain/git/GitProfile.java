@@ -3,7 +3,8 @@ package com.nhnacademy.domain.git;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.mapping.Map;
+
+import java.util.Map;
 
 @NoArgsConstructor
 @Data
