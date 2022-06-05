@@ -7,12 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RequestGit {
-    String clientId;
-
-    String redirectUri;
-
-    String scope;
-
+public class StateCookie {
     String state;
+
+    String url;
 }

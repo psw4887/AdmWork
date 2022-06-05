@@ -21,5 +21,5 @@ public interface ResidentRepository extends JpaRepository<Resident, Integer> {
 
     Optional<Resident> findByUserId(String username);
 
-    Page<ResidentDTO> getAllBy(Pageable pageable, int hNum);
+    Optional<Resident> findByUserEmail(String email);
 }

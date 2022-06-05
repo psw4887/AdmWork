@@ -38,11 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
                 .successHandler(loginSuccessHandler(null))
-                .and()
-            .oauth2Login()
-                .loginPage("/auth/login")
-                .clientRegistrationRepository(clientRegistrationRepository())
-                .authorizedClientService(authorizedClientService())
+//                .and()
+//            .oauth2Login()
+//                .loginPage("/auth/login")
+//                .clientRegistrationRepository(clientRegistrationRepository())
+//                .authorizedClientService(authorizedClientService())
                 .and()
             .logout()
                 .logoutUrl("/logout")
@@ -86,23 +86,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginSuccessHandler(redisTemplate);
     }
 
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository(github());
-    }
-
-    @Bean
-    public OAuth2AuthorizedClientService authorizedClientService() {
-        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
-    }
-
-    private ClientRegistration github() {
-        return CommonOAuth2Provider.GITHUB.getBuilder("github")
-                .clientId("fcaf07655762ce4a267b")
-                .clientSecret("22e83265d9668b2f67f4f0570f57ca2877dc9509")
-                .scope("name")
-                .redirectUri("http://localhost:8090/login/oauth2/code/github")
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .build();
-    }
+//    @Bean
+//    public ClientRegistrationRepository clientRegistrationRepository() {
+//        return new InMemoryClientRegistrationRepository(github());
+//    }
+//
+//    @Bean
+//    public OAuth2AuthorizedClientService authorizedClientService() {
+//        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
+//    }
+//
+//    private ClientRegistration github() {
+//        return CommonOAuth2Provider.GITHUB.getBuilder("github")
+//                .clientId("fcaf07655762ce4a267b")
+//                .clientSecret("22e83265d9668b2f67f4f0570f57ca2877dc9509")
+//                .scope("name")
+//                .redirectUri("http://localhost:8090/login/oauth2/code/github")
+//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+//                .build();
+//    }
 }
