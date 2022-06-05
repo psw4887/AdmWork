@@ -1,7 +1,5 @@
 package com.nhnacademy.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nhnacademy.domain.git.AuthToken;
 import com.nhnacademy.domain.git.CodeGit;
 import com.nhnacademy.domain.git.GitProfile;
@@ -38,7 +36,8 @@ public class GitRestController {
 
         AuthToken authToken = service.getAuthToken(codeGit);
         GitProfile gitProfile = service.getGithubProfile(authToken);
-        Resident resident = service.findResidentByEmail(gitProfile.getName(), response);
+        Resident resident = service.findResidentByEmail(gitProfile, response);
+        service.doGitLogin(resident);
         //FIXME : profile의 email이 계속 NULL??
 
         response.sendRedirect("/");

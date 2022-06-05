@@ -11,15 +11,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
-import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity(debug = true)
@@ -38,11 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
                 .successHandler(loginSuccessHandler(null))
-//                .and()
-//            .oauth2Login()
-//                .loginPage("/auth/login")
-//                .clientRegistrationRepository(clientRegistrationRepository())
-//                .authorizedClientService(authorizedClientService())
                 .and()
             .logout()
                 .logoutUrl("/logout")
@@ -85,24 +73,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler loginSuccessHandler(RedisTemplate<String, String> redisTemplate) {
         return new LoginSuccessHandler(redisTemplate);
     }
-
-//    @Bean
-//    public ClientRegistrationRepository clientRegistrationRepository() {
-//        return new InMemoryClientRegistrationRepository(github());
-//    }
-//
-//    @Bean
-//    public OAuth2AuthorizedClientService authorizedClientService() {
-//        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
-//    }
-//
-//    private ClientRegistration github() {
-//        return CommonOAuth2Provider.GITHUB.getBuilder("github")
-//                .clientId("fcaf07655762ce4a267b")
-//                .clientSecret("22e83265d9668b2f67f4f0570f57ca2877dc9509")
-//                .scope("name")
-//                .redirectUri("http://localhost:8090/login/oauth2/code/github")
-//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-//                .build();
-//    }
 }

@@ -13,7 +13,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -23,6 +30,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,11 +49,23 @@ public class CustomGitLoginService {
         return cookie;
     }
 
-    public Resident findResidentByEmail(String email, HttpServletResponse response) throws IOException {
-        if (rRepository.findByUserEmail(email).isEmpty()) {
+    public void doGitLogin(Resident resident) {
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("ROLE_MEMBER");
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(simpleGrantedAuthority);
+
+        UserDetails userDetails = new User(resident.getUserId(), resident.getUserPw(), authorities);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "USER_PASSWORD", authorities);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        securityContext.setAuthentication(authentication);
+    }
+
+    public Resident findResidentByEmail(GitProfile gitProfile, HttpServletResponse response) throws IOException {
+        if (rRepository.findByUserEmail(gitProfile.getName()).isEmpty()) {
             response.sendRedirect("auth/login");
         }
-        return rRepository.findByUserEmail(email).orElseThrow(ResidentNotFoundException::new);
+
+        return rRepository.findByUserEmail(gitProfile.getName()).orElseThrow(ResidentNotFoundException::new);
     }
 
     public StateCookie buildGitRequest() {

@@ -5,8 +5,6 @@ import com.nhnacademy.repository.ResidentRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             .orElseThrow(() -> new UsernameNotFoundException(username + "not found"));
 
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_MEMBER");
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(authority);
 
         return new User(resident.getUserId(), resident.getUserPw(), authorities);
