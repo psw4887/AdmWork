@@ -31,7 +31,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         List<GrantedAuthority> authorities = new ArrayList<>(userDetails.getAuthorities());
 
         HttpSession session = request.getSession(false);
-        session.setMaxInactiveInterval(258900);
+        session.setMaxInactiveInterval(259200);
 
         redisTemplate.opsForHash().put(session.getId(), "username", userDetails.getUsername());
         redisTemplate.opsForHash().put(session.getId(), "authority", authorities.get(0).getAuthority());
