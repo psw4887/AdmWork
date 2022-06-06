@@ -21,4 +21,6 @@ public class HouseholdCompositionResidentRepositoryImpl extends QuerydslReposito
                 .where(householdCompositionResident.household.serialNumber.eq(hNum))
                 .exists();
     }
+
+
 }

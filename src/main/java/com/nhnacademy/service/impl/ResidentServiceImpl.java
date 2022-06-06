@@ -10,6 +10,7 @@ import com.nhnacademy.exception.ResidentNotFoundException;
 import com.nhnacademy.repository.BirthDeathReportResidentRepository;
 import com.nhnacademy.repository.FamilyRelationShipRepository;
 import com.nhnacademy.repository.HouseholdCompositionResidentRepository;
+import com.nhnacademy.repository.HouseholdRepository;
 import com.nhnacademy.repository.ResidentRepository;
 import com.nhnacademy.service.ResidentService;
 import java.util.ArrayList;
@@ -29,16 +30,19 @@ public class ResidentServiceImpl implements ResidentService {
     private final FamilyRelationShipRepository familyRepository;
     private final BirthDeathReportResidentRepository birthDeathRepository;
     private final HouseholdCompositionResidentRepository compositionResidentRepository;
+    private final HouseholdRepository holdRepository;
     private final PasswordEncoder passwordEncoder;
 
     public ResidentServiceImpl(ResidentRepository residentRepository,
                                FamilyRelationShipRepository familyRepository,
                                BirthDeathReportResidentRepository birthDeathRepository,
-                               HouseholdCompositionResidentRepository compositionResidentRepository, PasswordEncoder passwordEncoder) {
+                               HouseholdCompositionResidentRepository compositionResidentRepository,
+                               HouseholdRepository holdRepository, PasswordEncoder passwordEncoder) {
         this.residentRepository = residentRepository;
         this.familyRepository = familyRepository;
         this.birthDeathRepository = birthDeathRepository;
         this.compositionResidentRepository = compositionResidentRepository;
+        this.holdRepository = holdRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -94,7 +98,16 @@ public class ResidentServiceImpl implements ResidentService {
             residentRepository.deleteById(sNum);
             familyRepository.findForDeleteFamily(sNum);
             birthDeathRepository.findForDeleteReport(sNum);
+            compositionResidentRepository.goodByeHouseMember(sNum);
         } else {
+            List<Integer> list = compositionResidentRepository.getListByhNum(hNum);
+            if(list.size() == 1 && list.get(0) == sNum) {
+                residentRepository.deleteById(sNum);
+                familyRepository.findForDeleteFamily(sNum);
+                birthDeathRepository.findForDeleteReport(sNum);
+                compositionResidentRepository.goodByeHouseMember(sNum);
+                holdRepository.findDeleteHouseHold(sNum);
+            }
             log.error("남은가족이 있어 삭제가 불가능합니다.");
         }
     }
