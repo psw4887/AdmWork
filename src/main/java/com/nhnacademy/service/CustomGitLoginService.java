@@ -61,11 +61,11 @@ public class CustomGitLoginService {
     }
 
     public Resident findResidentByEmail(GitProfile gitProfile, HttpServletResponse response) throws IOException {
-        if (rRepository.findByUserEmail(gitProfile.getName()).isEmpty()) {
+        if (rRepository.findByUserEmail(gitProfile.getEmail()).isEmpty()) {
             response.sendRedirect("auth/login");
         }
 
-        return rRepository.findByUserEmail(gitProfile.getName()).orElseThrow(ResidentNotFoundException::new);
+        return rRepository.findByUserEmail(gitProfile.getEmail()).orElseThrow(ResidentNotFoundException::new);
     }
 
     public StateCookie buildGitRequest() {
