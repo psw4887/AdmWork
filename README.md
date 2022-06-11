@@ -60,3 +60,30 @@ Thymeleaf를 이용해서 HTML로 응답
 증명서 발급 목록
 
 주민 삭제
+
+# 구현
+Spring Security 이용한 아이디/비밀번호 인증 추가
+
+아이디/비밀번호 인증 추가(커스텀 로그인 UI)
+
+데이터베이스 테이블 확장 ( 아이디/비밀번호/이메일 추가)
+
+비밀번호  : 단방향 hash 함수의 digest 기반으로 저장
+
+로그인/로그아웃 기능 추가
+
+인증 쿠키 : expire 3일
+
+세션은 redis에 저장
+
+OAuth2 인증 추가
+
+아이디/비밀번호 인증과 OAuth2 인증은 동시에 기능이 제공되어야 한다
+
+OAuth2 Provider는 github 만 제공하면 된다.
+
+Spring Security 라이브러리를 이용하지 않고 github API를 이용해서 직접 구현한다.
+
+github에서 인증한 결과 중 email 값이 실제 resident 테이블에 있는 값이면 그 계정으로 로그인을 시켜준다.
+
+github에서 인증이 성공했다고 하더라도 email 값이 resident 테이블에 없는 값이면 로그아웃 시킨다
